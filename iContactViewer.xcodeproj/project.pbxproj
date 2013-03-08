@@ -24,6 +24,8 @@
 		8B82ECFC16E9A80500520F12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECDB16E9A80500520F12 /* CoreData.framework */; };
 		8B82ED0416E9A80500520F12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ED0216E9A80500520F12 /* InfoPlist.strings */; };
 		8B82ED0716E9A80500520F12 /* iContactViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED0616E9A80500520F12 /* iContactViewerTests.m */; };
+		8B82ED1116E9A85B00520F12 /* iContactViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */; };
+		8B82ED1416E9A8C800520F12 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1316E9A8C800520F12 /* ContactsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		8B82ED0316E9A80500520F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B82ED0516E9A80500520F12 /* iContactViewerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iContactViewerTests.h; sourceTree = "<group>"; };
 		8B82ED0616E9A80500520F12 /* iContactViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iContactViewerTests.m; sourceTree = "<group>"; };
+		8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iContactViewer.storyboard; sourceTree = SOURCE_ROOT; };
+		8B82ED1216E9A8C800520F12 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		8B82ED1316E9A8C800520F12 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,9 @@
 			children = (
 				8B82ECE616E9A80500520F12 /* AppDelegate.h */,
 				8B82ECE716E9A80500520F12 /* AppDelegate.m */,
+				8B82ED1216E9A8C800520F12 /* ContactsViewController.h */,
+				8B82ED1316E9A8C800520F12 /* ContactsViewController.m */,
+				8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */,
 				8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */,
 				8B82ECDE16E9A80500520F12 /* Supporting Files */,
 			);
@@ -236,6 +244,7 @@
 				8B82ECEA16E9A80500520F12 /* Default.png in Resources */,
 				8B82ECEC16E9A80500520F12 /* Default@2x.png in Resources */,
 				8B82ECEE16E9A80500520F12 /* Default-568h@2x.png in Resources */,
+				8B82ED1116E9A85B00520F12 /* iContactViewer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +282,7 @@
 				8B82ECE416E9A80500520F12 /* main.m in Sources */,
 				8B82ECE816E9A80500520F12 /* AppDelegate.m in Sources */,
 				8B82ECF116E9A80500520F12 /* iContactViewer.xcdatamodeld in Sources */,
+				8B82ED1416E9A8C800520F12 /* ContactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +455,7 @@
 				8B82ED0C16E9A80500520F12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B82ED0D16E9A80500520F12 /* Build configuration list for PBXNativeTarget "iContactViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +464,7 @@
 				8B82ED0F16E9A80500520F12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
