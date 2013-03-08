@@ -60,7 +60,7 @@
 		8B82ED0316E9A80500520F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B82ED0516E9A80500520F12 /* iContactViewerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iContactViewerTests.h; sourceTree = "<group>"; };
 		8B82ED0616E9A80500520F12 /* iContactViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iContactViewerTests.m; sourceTree = "<group>"; };
-		8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iContactViewer.storyboard; sourceTree = SOURCE_ROOT; };
+		8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iContactViewer.storyboard; path = iContactViewer/iContactViewer.storyboard; sourceTree = SOURCE_ROOT; };
 		8B82ED1216E9A8C800520F12 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		8B82ED1316E9A8C800520F12 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
