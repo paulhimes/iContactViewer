@@ -7,8 +7,12 @@
 //
 
 #import "ContactsViewController.h"
+#import "Contact.h"
+#import "ContactViewController.h"
 
 @interface ContactsViewController ()
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchController;
 
 @end
 
@@ -27,11 +31,13 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self resetHardcodedContacts];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:kContactEntityName];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    
+    self.fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+    [self.fetchController performFetch:NULL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,70 +46,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Detail"]) {
+        ContactViewController *contactViewController = segue.destinationViewController;
+        contactViewController.contact = [self.fetchController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [self.fetchController.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchController.sections[section];
+    return sectionInfo.numberOfObjects;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchController.sections[indexPath.section];
+    Contact *contact = (Contact*)sectionInfo.objects[indexPath.row];
+    
+    cell.textLabel.text = contact.name;
+    cell.detailTextLabel.text = contact.title;
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -116,6 +94,97 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Helper Methods
+
+- (void)resetHardcodedContacts
+{
+    NSArray *allContacts = [self.context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:kContactEntityName] error:NULL];
+    for (Contact *contact in allContacts) {
+        [self.context deleteObject:contact];
+    }
+    [self.context save:NULL];
+    
+    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Malcom Reynolds";
+    contact.email = @"mal@serenity.com";
+    contact.title = @"Captain";
+    contact.twitterId = @"malcomreynolds";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(1234);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Zoe Washburne";
+    contact.email = @"zoe@serenity.com";
+    contact.title = @"First Mate";
+    contact.twitterId = @"zoewashburne";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(5678);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Hoban Washburne";
+    contact.email = @"wash@serenity.com";
+    contact.title = @"Pilot";
+    contact.twitterId = @"wash";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(9012);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Jayne Cobb";
+    contact.email = @"jayne@serenity.com";
+    contact.title = @"Muscle";
+    contact.twitterId = @"heroofcanton";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(3456);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Kaylee Frye";
+    contact.email = @"kaylee@serenity.com";
+    contact.title = @"Engineer";
+    contact.twitterId = @"kaylee";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(7890);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Simon Tam";
+    contact.email = @"simon@serenity.com";
+    contact.title = @"Doctor";
+    contact.twitterId = @"simontam";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(4321);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"River Tam";
+    contact.email = @"river@serenity.com";
+    contact.title = @"Doctor's Sister";
+    contact.twitterId = @"miranda";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(8765);
+    [self.context save:NULL];
+    
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+    contact.name = @"Shepherd Book";
+    contact.email = @"shepherd@serenity.com";
+    contact.title = @"Shepherd";
+    contact.twitterId = @"shepherdbook";
+    contact.phoneAreaCode = @(612);
+    contact.phonePrefix = @(555);
+    contact.phoneLineNumber = @(2109);
+    [self.context save:NULL];
 }
 
 @end

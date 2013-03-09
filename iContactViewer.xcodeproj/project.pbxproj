@@ -26,6 +26,9 @@
 		8B82ED0716E9A80500520F12 /* iContactViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED0616E9A80500520F12 /* iContactViewerTests.m */; };
 		8B82ED1116E9A85B00520F12 /* iContactViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */; };
 		8B82ED1416E9A8C800520F12 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1316E9A8C800520F12 /* ContactsViewController.m */; };
+		8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1616EAC39A00520F12 /* ContactViewController.m */; };
+		8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1916EAC3E500520F12 /* EditContactViewController.m */; };
+		8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1C16EAF9AB00520F12 /* Contact.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,12 @@
 		8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iContactViewer.storyboard; path = iContactViewer/iContactViewer.storyboard; sourceTree = SOURCE_ROOT; };
 		8B82ED1216E9A8C800520F12 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		8B82ED1316E9A8C800520F12 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		8B82ED1516EAC39A00520F12 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		8B82ED1616EAC39A00520F12 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		8B82ED1816EAC3E500520F12 /* EditContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContactViewController.h; sourceTree = "<group>"; };
+		8B82ED1916EAC3E500520F12 /* EditContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactViewController.m; sourceTree = "<group>"; };
+		8B82ED1B16EAF9AB00520F12 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		8B82ED1C16EAF9AB00520F12 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +138,12 @@
 				8B82ECE716E9A80500520F12 /* AppDelegate.m */,
 				8B82ED1216E9A8C800520F12 /* ContactsViewController.h */,
 				8B82ED1316E9A8C800520F12 /* ContactsViewController.m */,
+				8B82ED1516EAC39A00520F12 /* ContactViewController.h */,
+				8B82ED1616EAC39A00520F12 /* ContactViewController.m */,
+				8B82ED1816EAC3E500520F12 /* EditContactViewController.h */,
+				8B82ED1916EAC3E500520F12 /* EditContactViewController.m */,
 				8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */,
-				8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */,
+				8B82ED1E16EAF9BC00520F12 /* Data Model */,
 				8B82ECDE16E9A80500520F12 /* Supporting Files */,
 			);
 			path = iContactViewer;
@@ -167,6 +180,16 @@
 				8B82ED0216E9A80500520F12 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8B82ED1E16EAF9BC00520F12 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B82ED1B16EAF9AB00520F12 /* Contact.h */,
+				8B82ED1C16EAF9AB00520F12 /* Contact.m */,
+				8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */,
+			);
+			name = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +306,9 @@
 				8B82ECE816E9A80500520F12 /* AppDelegate.m in Sources */,
 				8B82ECF116E9A80500520F12 /* iContactViewer.xcdatamodeld in Sources */,
 				8B82ED1416E9A8C800520F12 /* ContactsViewController.m in Sources */,
+				8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */,
+				8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */,
+				8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,4 +10,6 @@
 
 @interface ContactsViewController : UITableViewController
 
+@property (nonatomic, strong) NSManagedObjectContext *context;
+
 @end

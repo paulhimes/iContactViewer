@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ContactsViewController.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Override point for customization after application launch.
+    ContactsViewController *controller = (ContactsViewController*)((UINavigationController *)self.window.rootViewController).topViewController;
+    controller.context = self.managedObjectContext;
     return YES;
 }
 
