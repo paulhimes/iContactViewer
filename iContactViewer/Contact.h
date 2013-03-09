@@ -14,12 +14,16 @@ static NSString* const kContactEntityName = @"Contact";
 @interface Contact : NSManagedObject
 
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * firstName;
+@property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSNumber * phoneAreaCode;
 @property (nonatomic, retain) NSNumber * phoneLineNumber;
 @property (nonatomic, retain) NSNumber * phonePrefix;
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * twitterId;
+
+- (NSString*)fullName;
+- (NSString*)fullPhone;
 
 @end

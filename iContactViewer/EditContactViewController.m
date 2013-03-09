@@ -27,11 +27,14 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.firstNameTextField.text = self.contact.firstName;
+    self.lastNameTextField.text = self.contact.lastName;
+    self.titleTextField.text = self.contact.title;
+    self.phoneAreaCodeTextField.text = [self.contact.phoneAreaCode stringValue];
+    self.phonePrefixTextField.text = [self.contact.phonePrefix stringValue];
+    self.phoneLineNumberTextField.text = [self.contact.phoneLineNumber stringValue];
+    self.emailTextField.text = self.contact.email;
+    self.twitterTextField.text = self.contact.twitterId;
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,30 +44,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
 
 /*
  // Override to support conditional editing of the table view.
@@ -116,6 +95,29 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (IBAction)cancel:(id)sender {
+    [self hide];
+}
+
+- (IBAction)save:(id)sender {
+    [self hide];
+}
+
+- (IBAction)changePhoto:(id)sender {
+    NSLog(@"Change Photo");
+}
+
+- (IBAction)deleteContact:(id)sender {
+    NSLog(@"Delete contact");
+}
+
+#pragma mark - Helper methods
+
+- (void)hide
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end

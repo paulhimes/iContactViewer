@@ -13,4 +13,11 @@
 
 @property (nonatomic, strong) Contact *contact;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *twitterIdLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+
 @end

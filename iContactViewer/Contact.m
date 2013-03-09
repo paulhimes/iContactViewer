@@ -12,12 +12,23 @@
 @implementation Contact
 
 @dynamic email;
-@dynamic name;
+@dynamic firstName;
+@dynamic lastName;
 @dynamic phoneAreaCode;
 @dynamic phoneLineNumber;
 @dynamic phonePrefix;
 @dynamic photo;
 @dynamic title;
 @dynamic twitterId;
+
+- (NSString*)fullName
+{
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
+- (NSString*)fullPhone
+{
+    return [NSString stringWithFormat:@"(%@) %@-%@", self.phoneAreaCode, self.phonePrefix, self.phoneLineNumber];
+}
 
 @end

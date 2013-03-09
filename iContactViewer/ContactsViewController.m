@@ -34,7 +34,7 @@
     [self resetHardcodedContacts];
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:kContactEntityName];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]];
     
     self.fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     [self.fetchController performFetch:NULL];
@@ -77,7 +77,7 @@
     id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchController.sections[indexPath.section];
     Contact *contact = (Contact*)sectionInfo.objects[indexPath.row];
     
-    cell.textLabel.text = contact.name;
+    cell.textLabel.text = [contact fullName];
     cell.detailTextLabel.text = contact.title;
     
     return cell;
@@ -107,7 +107,8 @@
     [self.context save:NULL];
     
     Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Malcom Reynolds";
+    contact.firstName = @"Malcom";
+    contact.lastName = @"Reynolds";
     contact.email = @"mal@serenity.com";
     contact.title = @"Captain";
     contact.twitterId = @"malcomreynolds";
@@ -117,7 +118,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Zoe Washburne";
+    contact.firstName = @"Zoe";
+    contact.lastName = @"Washburne";
     contact.email = @"zoe@serenity.com";
     contact.title = @"First Mate";
     contact.twitterId = @"zoewashburne";
@@ -127,7 +129,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Hoban Washburne";
+    contact.firstName = @"Hoban";
+    contact.lastName = @"Washburne";
     contact.email = @"wash@serenity.com";
     contact.title = @"Pilot";
     contact.twitterId = @"wash";
@@ -137,7 +140,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Jayne Cobb";
+    contact.firstName = @"Jayne";
+    contact.lastName = @"Cobb";
     contact.email = @"jayne@serenity.com";
     contact.title = @"Muscle";
     contact.twitterId = @"heroofcanton";
@@ -147,7 +151,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Kaylee Frye";
+    contact.firstName = @"Kaylee";
+    contact.lastName = @"Frye";
     contact.email = @"kaylee@serenity.com";
     contact.title = @"Engineer";
     contact.twitterId = @"kaylee";
@@ -157,7 +162,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Simon Tam";
+    contact.firstName = @"Simon";
+    contact.lastName = @"Tam";
     contact.email = @"simon@serenity.com";
     contact.title = @"Doctor";
     contact.twitterId = @"simontam";
@@ -167,7 +173,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"River Tam";
+    contact.firstName = @"River";
+    contact.lastName = @"Tam";
     contact.email = @"river@serenity.com";
     contact.title = @"Doctor's Sister";
     contact.twitterId = @"miranda";
@@ -177,7 +184,8 @@
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.name = @"Shepherd Book";
+    contact.firstName = @"Shepherd";
+    contact.lastName = @"Book";
     contact.email = @"shepherd@serenity.com";
     contact.title = @"Shepherd";
     contact.twitterId = @"shepherdbook";
