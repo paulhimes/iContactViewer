@@ -8,7 +8,7 @@ Created for the University of Minnesota Mobile App Development class during the 
 Team: Let It Be
 
 Contributors:
-*Paul Himes
-*Michael Pillsbury
-*Chadm Linke
-*Eranda Kotalawala
+* Paul Himes
+* Michael Pillsbury
+* Chadm Linke
+* Eranda Kotalawala
