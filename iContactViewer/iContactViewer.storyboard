@@ -157,7 +157,7 @@
         <scene sceneID="Qxe-tW-1kD">
             <objects>
                 <tableViewController id="h5n-Xq-3Qb" customClass="EditContactViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SYd-mc-N6n">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SYd-mc-N6n">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,6 +174,9 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-87-rL2">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="OCc-f0-YJ6"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="First Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXI-IH-kYr">
                                                     <constraints>
@@ -204,6 +207,9 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cly-aq-8YO">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="jEb-aC-zGA"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku1-ID-udS">
                                                     <constraints>
@@ -234,6 +240,9 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMO-Yl-odP">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="Kwc-j8-Fzs"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76Z-1C-iuf">
                                                     <constraints>
@@ -271,24 +280,33 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1qk-78-jX5">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="WNz-JQ-gGc"/>
+                                                        <constraint firstAttribute="width" constant="42" id="t4A-mh-FXl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="cBj-5b-ZHd"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="456" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roI-YL-Byq">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="hLZ-A6-tr3"/>
+                                                        <constraint firstAttribute="width" constant="42" id="Dur-gM-G20"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="HjU-rc-Rkf"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="7890" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAS-jX-9KG">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="54" id="JKr-ac-N7Z"/>
+                                                        <constraint firstAttribute="width" constant="50" id="BTz-lM-Qri"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="lf3-Hr-W2N"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bi-2P-OMf">
                                                     <constraints>
@@ -318,24 +336,24 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="1qk-78-jX5" firstAttribute="top" secondItem="roI-YL-Byq" secondAttribute="top" type="default" id="1yG-pg-jAs"/>
-                                            <constraint firstAttribute="trailing" secondItem="Sb3-us-Rfi" secondAttribute="trailing" constant="132" id="51o-gG-qZn"/>
-                                            <constraint firstAttribute="trailing" secondItem="roI-YL-Byq" secondAttribute="trailing" constant="88" id="8dp-R9-Zez"/>
+                                            <constraint firstAttribute="trailing" secondItem="6bi-2P-OMf" secondAttribute="trailing" constant="70" id="82Y-by-KE1"/>
                                             <constraint firstItem="6bi-2P-OMf" firstAttribute="baseline" secondItem="Sb3-us-Rfi" secondAttribute="baseline" type="default" id="8ea-14-uAb"/>
                                             <constraint firstItem="jmI-Xq-Rt2" firstAttribute="top" secondItem="EZK-Ax-lHO" secondAttribute="top" constant="9" id="8he-pu-V1O"/>
                                             <constraint firstItem="Sb3-us-Rfi" firstAttribute="baseline" secondItem="jmI-Xq-Rt2" secondAttribute="baseline" type="default" id="9WP-fb-a99"/>
                                             <constraint firstItem="468-iR-Kqu" firstAttribute="leading" secondItem="EZK-Ax-lHO" secondAttribute="leading" constant="20" type="default" id="9gF-N0-0ys"/>
-                                            <constraint firstItem="1qk-78-jX5" firstAttribute="baseline" secondItem="bAS-jX-9KG" secondAttribute="baseline" type="default" id="CbC-ap-Evq"/>
+                                            <constraint firstItem="bAS-jX-9KG" firstAttribute="baseline" secondItem="roI-YL-Byq" secondAttribute="baseline" type="default" id="BL0-ja-4Lq"/>
                                             <constraint firstItem="jmI-Xq-Rt2" firstAttribute="leading" secondItem="468-iR-Kqu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="EkZ-1J-Ik0"/>
+                                            <constraint firstAttribute="trailing" secondItem="roI-YL-Byq" secondAttribute="trailing" constant="84" id="Hr8-lW-odU"/>
+                                            <constraint firstItem="1qk-78-jX5" firstAttribute="centerY" secondItem="EZK-Ax-lHO" secondAttribute="centerY" type="default" id="Jek-Qb-gF7"/>
                                             <constraint firstItem="468-iR-Kqu" firstAttribute="top" secondItem="EZK-Ax-lHO" secondAttribute="top" constant="11" id="SPk-eX-VO3"/>
                                             <constraint firstItem="1qk-78-jX5" firstAttribute="leading" secondItem="EZK-Ax-lHO" secondAttribute="leading" constant="134" id="WNH-y5-YW1"/>
                                             <constraint firstItem="1qk-78-jX5" firstAttribute="baseline" secondItem="roI-YL-Byq" secondAttribute="baseline" type="default" id="X2G-D5-wLY"/>
                                             <constraint firstItem="1qk-78-jX5" firstAttribute="bottom" secondItem="roI-YL-Byq" secondAttribute="bottom" type="default" id="agR-zS-vQa"/>
                                             <constraint firstItem="bAS-jX-9KG" firstAttribute="bottom" secondItem="roI-YL-Byq" secondAttribute="bottom" type="default" id="e5e-yD-1Yh"/>
-                                            <constraint firstAttribute="trailing" secondItem="bAS-jX-9KG" secondAttribute="trailing" constant="20" type="default" id="fBI-Hf-bfp"/>
-                                            <constraint firstItem="1qk-78-jX5" firstAttribute="centerY" secondItem="EZK-Ax-lHO" secondAttribute="centerY" type="default" id="iqD-b1-5LZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="6bi-2P-OMf" secondAttribute="trailing" constant="74" id="wYV-yb-8nk"/>
+                                            <constraint firstAttribute="trailing" secondItem="bAS-jX-9KG" secondAttribute="trailing" constant="20" type="default" id="izF-fu-rpd"/>
                                             <constraint firstItem="468-iR-Kqu" firstAttribute="baseline" secondItem="1qk-78-jX5" secondAttribute="baseline" type="default" id="x02-ql-Lf3"/>
+                                            <constraint firstItem="roI-YL-Byq" firstAttribute="top" secondItem="1qk-78-jX5" secondAttribute="top" type="default" id="y2j-4E-wqk"/>
+                                            <constraint firstAttribute="trailing" secondItem="Sb3-us-Rfi" secondAttribute="trailing" constant="130" id="y3S-rs-zPX"/>
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lPE-Ns-fuF">
@@ -348,6 +366,9 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0k7-zM-2aV">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="2iY-t0-J7u"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjf-lZ-eb8">
                                                     <constraints>
@@ -378,6 +399,9 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uY0-WF-H0N">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType=""/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="h5n-Xq-3Qb" id="q3U-yK-rdD"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vt0-SU-pL4">
                                                     <constraints>

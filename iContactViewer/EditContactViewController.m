@@ -102,6 +102,7 @@
 }
 
 - (IBAction)save:(id)sender {
+    [self updateContact];
     [self hide];
 }
 
@@ -113,11 +114,58 @@
     NSLog(@"Delete contact");
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    BOOL result = YES;
+    NSString *changedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (textField == self.phoneAreaCodeTextField) {
+        if ([changedString length] > 3) {
+            result = NO;
+        }
+    } else if (textField == self.phonePrefixTextField) {
+        if ([changedString length] > 3) {
+            result = NO;
+        }
+    } else if (textField == self.phoneLineNumberTextField) {
+        if ([changedString length] > 4) {
+            result = NO;
+        }
+    }
+    
+    return result;
+}
+
 #pragma mark - Helper methods
 
 - (void)hide
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)updateContact
+{
+    self.contact.firstName = self.firstNameTextField.text;
+    self.contact.lastName = self.lastNameTextField.text;
+    self.contact.title = self.titleTextField.text;
+    self.contact.phoneAreaCode = @([self.phoneAreaCodeTextField.text integerValue]);
+    self.contact.phonePrefix = @([self.phonePrefixTextField.text integerValue]);
+    self.contact.phoneLineNumber = @([self.phoneLineNumberTextField.text integerValue]);
+    self.contact.email = self.emailTextField.text;
+    self.contact.twitterId = self.twitterTextField.text;
+    [self.contact.managedObjectContext save:NULL];
 }
 
 @end

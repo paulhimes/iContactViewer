@@ -28,12 +28,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = [self.contact fullName];
-    self.nameLabel.text = [self.contact fullName];
-    self.titleLabel.text = self.contact.title;
-    self.phoneNumberLabel.text = [self.contact fullPhone];
-    self.emailAddressLabel.text = self.contact.email;
-    self.twitterIdLabel.text = self.contact.twitterId;
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateDataFields];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +49,18 @@
         EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
         editContactViewController.contact = self.contact;
     }
+}
+
+#pragma mark - Helper methods
+
+- (void)updateDataFields
+{
+    self.title = [self.contact fullName];
+    self.nameLabel.text = [self.contact fullName];
+    self.titleLabel.text = self.contact.title;
+    self.phoneNumberLabel.text = [self.contact fullPhone];
+    self.emailAddressLabel.text = self.contact.email;
+    self.twitterIdLabel.text = self.contact.twitterId;
 }
 
 @end

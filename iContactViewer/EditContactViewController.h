@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Contact.h"
 
-@interface EditContactViewController : UITableViewController
+@interface EditContactViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) Contact *contact;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
