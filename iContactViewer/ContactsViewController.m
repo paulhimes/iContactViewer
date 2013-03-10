@@ -62,7 +62,7 @@
     } else if ([segue.identifier isEqualToString:@"Add"]) {
         
         // Create a new contact.
-        Contact *contact = [self createContactWithDefaults];
+        Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
         [self.context save:NULL];
         
         EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
@@ -147,8 +147,10 @@
     for (Contact *contact in allContacts) {
         [self.context deleteObject:contact];
     }
+    
+    
         
-    Contact *contact = [self createContactWithDefaults];
+    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Malcom";
     contact.lastName = @"Reynolds";
     contact.email = @"mal@serenity.com";
@@ -157,8 +159,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"1234";
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"mal.jpg"], 1);
     
-    contact = [self createContactWithDefaults];
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Zoe";
     contact.lastName = @"Washburne";
     contact.email = @"zoe@serenity.com";
@@ -167,8 +170,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"5678";
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"zoe.jpg"], 1);
     
-    contact = [self createContactWithDefaults];
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Hoban";
     contact.lastName = @"Washburne";
     contact.email = @"wash@serenity.com";
@@ -177,8 +181,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"9012";
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"wash.jpg"], 1);
     
-    contact = [self createContactWithDefaults];
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Jayne";
     contact.lastName = @"Cobb";
     contact.email = @"jayne@serenity.com";
@@ -187,8 +192,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"3456";
-    
-    contact = [self createContactWithDefaults];
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"jayne.jpg"], 1);
+
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Kaylee";
     contact.lastName = @"Frye";
     contact.email = @"kaylee@serenity.com";
@@ -197,8 +203,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"7890";
-    
-    contact = [self createContactWithDefaults];
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"kaylee.jpg"], 1);
+
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Simon";
     contact.lastName = @"Tam";
     contact.email = @"simon@serenity.com";
@@ -207,8 +214,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"4321";
-    
-    contact = [self createContactWithDefaults];
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"simon.jpg"], 1);
+
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"River";
     contact.lastName = @"Tam";
     contact.email = @"river@serenity.com";
@@ -217,8 +225,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"8765";
-    
-    contact = [self createContactWithDefaults];
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"river.jpg"], 1);
+
+    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Shepherd";
     contact.lastName = @"Book";
     contact.email = @"shepherd@serenity.com";
@@ -227,15 +236,9 @@
     contact.phoneAreaCode = @"612";
     contact.phonePrefix = @"555";
     contact.phoneLineNumber = @"2109";
-    
-    [self.context save:NULL];
-}
+    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"shepherd.jpg"], 1);
 
-- (Contact*)createContactWithDefaults
-{
-    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"firefly.jpg"], 1);
-    return contact;
+    [self.context save:NULL];
 }
 
 @end
