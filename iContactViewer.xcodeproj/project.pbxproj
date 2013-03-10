@@ -44,6 +44,8 @@
 		8BA0D47016ED227300F03B51 /* zoe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D46816ED227300F03B51 /* zoe.jpg */; };
 		8BA0D47416ED29BA00F03B51 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D47316ED29BA00F03B51 /* info@2x.png */; };
 		8BA0D47616ED2A0E00F03B51 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D47516ED2A0E00F03B51 /* info.png */; };
+		8BA0D47816ED385300F03B51 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D47716ED385300F03B51 /* icon114.png */; };
+		8BA0D47A16ED388600F03B51 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D47916ED388600F03B51 /* icon57.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		8BA0D46816ED227300F03B51 /* zoe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zoe.jpg; sourceTree = "<group>"; };
 		8BA0D47316ED29BA00F03B51 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
 		8BA0D47516ED2A0E00F03B51 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		8BA0D47716ED385300F03B51 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon114.png; path = ../icon114.png; sourceTree = "<group>"; };
+		8BA0D47916ED388600F03B51 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon57.png; path = ../icon57.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 				8B82ECE916E9A80500520F12 /* Default.png */,
 				8B82ECEB16E9A80500520F12 /* Default@2x.png */,
 				8B82ECED16E9A80500520F12 /* Default-568h@2x.png */,
+				8BA0D47916ED388600F03B51 /* icon57.png */,
+				8BA0D47716ED385300F03B51 /* icon114.png */,
 				8BA0D47316ED29BA00F03B51 /* info@2x.png */,
 				8BA0D47516ED2A0E00F03B51 /* info.png */,
 				8BA0D45E16ED0C7C00F03B51 /* paper@2x.jpg */,
@@ -337,6 +343,8 @@
 				8BA0D47016ED227300F03B51 /* zoe.jpg in Resources */,
 				8BA0D47416ED29BA00F03B51 /* info@2x.png in Resources */,
 				8BA0D47616ED2A0E00F03B51 /* info.png in Resources */,
+				8BA0D47816ED385300F03B51 /* icon114.png in Resources */,
+				8BA0D47A16ED388600F03B51 /* icon57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
