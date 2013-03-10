@@ -107,6 +107,23 @@
     return cell;
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Contact *contact = [self.fetchController objectAtIndexPath:indexPath];
+        [self.context deleteObject:contact];
+        [self.context save:NULL];
+        [self.fetchController performFetch:NULL];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +136,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+
 
 #pragma mark - Helper Methods
 
