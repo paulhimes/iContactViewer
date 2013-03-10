@@ -43,12 +43,17 @@
 
 + (UIColor*)deleteColor
 {
-    return [UIColor colorWithRed:0.3 green:0 blue:0 alpha:0.4];
+    return [UIColor colorWithRed:0.5 green:0 blue:0 alpha:0.4];
 }
 
 + (UIColor*)deleteTextColor
 {
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1];
+}
+
++ (UIColor*)deleteBorderColor
+{
+    return [Theme deleteTextColor];
 }
 
 

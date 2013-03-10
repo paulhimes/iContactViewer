@@ -18,5 +18,6 @@
 + (UIColor*)bodyControlTextColor;
 + (UIColor*)deleteColor;
 + (UIColor*)deleteTextColor;
++ (UIColor*)deleteBorderColor;
 
 @end

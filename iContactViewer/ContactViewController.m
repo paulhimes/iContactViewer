@@ -43,8 +43,22 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self updateDataFields];
+    
+    if (self.contact.managedObjectContext) {
+        [self updateDataFields];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
 }
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    if (!self.contact.managedObjectContext) {
+//        // This contact has been deleted.
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -57,6 +71,7 @@
     if ([segue.identifier isEqualToString:@"Edit"]) {
         EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
         editContactViewController.contact = self.contact;
+        editContactViewController.context = self.context;
     }
 }
 
@@ -68,7 +83,7 @@
     self.nameLabel.text = [self.contact fullName];
     self.titleLabel.text = self.contact.title;
     self.phoneNumberLabel.text = [self.contact fullPhone];
-    self.emailAddressLabel.text = self.contact.email;
+    self.emailAddressLabel.text = self.contact.email ;
     self.twitterIdLabel.text = self.contact.twitterId;
     if (self.contact.photo) {
         self.photoImageView.image = [UIImage imageWithData:self.contact.photo];

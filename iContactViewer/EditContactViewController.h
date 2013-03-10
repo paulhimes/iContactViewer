@@ -11,6 +11,7 @@
 
 @interface EditContactViewController : UITableViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) Contact *contact;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
@@ -32,10 +33,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *leftParenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rightParenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dashLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)changePhoto:(id)sender;
 - (IBAction)deleteContact:(id)sender;
+
+- (void)hideCancelButton;
 
 @end

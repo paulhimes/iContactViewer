@@ -31,8 +31,10 @@
 		8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1C16EAF9AB00520F12 /* Contact.m */; };
 		8BA0D44C16EC35EB00F03B51 /* firefly@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */; };
 		8BA0D44F16EC555400F03B51 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D44E16EC555400F03B51 /* Theme.m */; };
-		8BA0D45316EC5A0B00F03B51 /* paper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D45216EC5A0B00F03B51 /* paper.jpg */; };
 		8BA0D45516EC611300F03B51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA0D45416EC611300F03B51 /* QuartzCore.framework */; };
+		8BA0D45816ECF25D00F03B51 /* shadow-radius6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D45616ECF25D00F03B51 /* shadow-radius6.png */; };
+		8BA0D45916ECF25D00F03B51 /* shadow-radius6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D45716ECF25D00F03B51 /* shadow-radius6@2x.png */; };
+		8BA0D45F16ED0C7C00F03B51 /* paper@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D45E16ED0C7C00F03B51 /* paper@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +81,10 @@
 		8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "firefly@2x.jpg"; sourceTree = "<group>"; };
 		8BA0D44D16EC555400F03B51 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		8BA0D44E16EC555400F03B51 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
-		8BA0D45216EC5A0B00F03B51 /* paper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paper.jpg; sourceTree = "<group>"; };
 		8BA0D45416EC611300F03B51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8BA0D45616ECF25D00F03B51 /* shadow-radius6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-radius6.png"; sourceTree = "<group>"; };
+		8BA0D45716ECF25D00F03B51 /* shadow-radius6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-radius6@2x.png"; sourceTree = "<group>"; };
+		8BA0D45E16ED0C7C00F03B51 /* paper@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "paper@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +177,9 @@
 				8B82ECEB16E9A80500520F12 /* Default@2x.png */,
 				8B82ECED16E9A80500520F12 /* Default-568h@2x.png */,
 				8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */,
-				8BA0D45216EC5A0B00F03B51 /* paper.jpg */,
+				8BA0D45E16ED0C7C00F03B51 /* paper@2x.jpg */,
+				8BA0D45616ECF25D00F03B51 /* shadow-radius6.png */,
+				8BA0D45716ECF25D00F03B51 /* shadow-radius6@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -284,7 +290,9 @@
 				8B82ECEE16E9A80500520F12 /* Default-568h@2x.png in Resources */,
 				8B82ED1116E9A85B00520F12 /* iContactViewer.storyboard in Resources */,
 				8BA0D44C16EC35EB00F03B51 /* firefly@2x.jpg in Resources */,
-				8BA0D45316EC5A0B00F03B51 /* paper.jpg in Resources */,
+				8BA0D45816ECF25D00F03B51 /* shadow-radius6.png in Resources */,
+				8BA0D45916ECF25D00F03B51 /* shadow-radius6@2x.png in Resources */,
+				8BA0D45F16ED0C7C00F03B51 /* paper@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

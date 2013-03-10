@@ -7,7 +7,7 @@
         <!--Contacts View Controller - iContactViewer-->
         <scene sceneID="ADz-tM-Th0">
             <objects>
-                <tableViewController id="z08-Tx-b08" customClass="ContactsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ContactsList" id="z08-Tx-b08" customClass="ContactsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ShI-Pa-e4M">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="iContactViewer" id="Y7w-UT-ttv">
                         <barButtonItem key="backBarButtonItem" title="Contacts" id="OhI-7L-9q5"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="d88-Lp-QYG"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="d88-Lp-QYG">
+                            <connections>
+                                <segue destination="FhI-fD-Fc4" kind="modal" identifier="Add" id="V4A-jn-Ntb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BP-B3-X2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -51,14 +55,14 @@
         <!--Contact View Controller-->
         <scene sceneID="pMt-Gt-VDF">
             <objects>
-                <viewController id="tv4-pB-qEt" customClass="ContactViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactDetail" id="tv4-pB-qEt" customClass="ContactViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wfe-7Z-td9">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="firefly@2x.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="p61-xQ-cb0">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="nkd-xy-4Se"/>
+                                    <constraint firstAttribute="height" constant="240" type="user" id="GAA-Ep-PEI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zp2-60-r3J">
@@ -109,6 +113,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="shadow-radius6.png" translatesAutoresizingMaskIntoConstraints="NO" id="sfA-fU-ecV"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -120,22 +125,25 @@
                             <constraint firstItem="43w-h1-tHe" firstAttribute="leading" secondItem="Wwr-De-QDP" secondAttribute="leading" type="default" id="6d0-qf-XR0"/>
                             <constraint firstItem="Xmq-hN-OLa" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7bd-XH-Ddp"/>
                             <constraint firstItem="Wwr-De-QDP" firstAttribute="leading" secondItem="y1W-va-Z4k" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="B6P-Ku-JPd"/>
-                            <constraint firstItem="p61-xQ-cb0" firstAttribute="top" secondItem="wfe-7Z-td9" secondAttribute="top" type="default" id="BRU-Lb-fPZ"/>
                             <constraint firstItem="p61-xQ-cb0" firstAttribute="trailing" secondItem="wfe-7Z-td9" secondAttribute="trailing" type="default" id="BgR-pE-ILE"/>
                             <constraint firstAttribute="bottom" secondItem="y1W-va-Z4k" secondAttribute="bottom" constant="112" id="CD0-4T-oif"/>
                             <constraint firstAttribute="trailing" secondItem="43w-h1-tHe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dq0-2I-Vqb"/>
+                            <constraint firstItem="sfA-fU-ecV" firstAttribute="top" secondItem="p61-xQ-cb0" secondAttribute="bottom" type="user" id="Fdl-0p-csz"/>
                             <constraint firstItem="fXR-Cu-T9L" firstAttribute="top" secondItem="Esk-PM-dk4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MwM-qa-Hee"/>
+                            <constraint firstItem="sfA-fU-ecV" firstAttribute="top" secondItem="wfe-7Z-td9" secondAttribute="top" constant="239" type="user" id="ON3-xi-bU9"/>
                             <constraint firstItem="43w-h1-tHe" firstAttribute="baseline" secondItem="Xmq-hN-OLa" secondAttribute="baseline" type="default" id="Qli-Up-3OL"/>
                             <constraint firstItem="y1W-va-Z4k" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UUU-Ey-3jA"/>
                             <constraint firstAttribute="trailing" secondItem="Esk-PM-dk4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Zvv-h5-17a"/>
                             <constraint firstItem="Xmq-hN-OLa" firstAttribute="top" secondItem="fXR-Cu-T9L" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="caD-AX-w3x"/>
                             <constraint firstItem="tKc-XP-yoB" firstAttribute="leading" secondItem="43w-h1-tHe" secondAttribute="leading" type="default" id="csU-8V-Kbb"/>
                             <constraint firstItem="zp2-60-r3J" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dtg-Aa-GXc"/>
+                            <constraint firstItem="sfA-fU-ecV" firstAttribute="trailing" secondItem="wfe-7Z-td9" secondAttribute="trailing" type="default" id="gnB-m9-sxK"/>
                             <constraint firstItem="p61-xQ-cb0" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" type="default" id="hZU-EA-x3o"/>
                             <constraint firstAttribute="trailing" secondItem="tKc-XP-yoB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="k2x-MM-NTu"/>
                             <constraint firstItem="zp2-60-r3J" firstAttribute="top" secondItem="p61-xQ-cb0" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lkW-Di-nwB"/>
                             <constraint firstItem="y1W-va-Z4k" firstAttribute="top" secondItem="Xmq-hN-OLa" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="mNE-DH-0gY"/>
                             <constraint firstItem="tKc-XP-yoB" firstAttribute="leading" secondItem="fXR-Cu-T9L" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ppI-pn-uyT"/>
+                            <constraint firstItem="sfA-fU-ecV" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" type="default" id="q9i-Et-E8j"/>
                             <constraint firstAttribute="trailing" secondItem="Wwr-De-QDP" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qtx-5Z-WR2"/>
                             <constraint firstItem="43w-h1-tHe" firstAttribute="leading" secondItem="Xmq-hN-OLa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zCg-lM-zsP"/>
                         </constraints>
@@ -166,7 +174,7 @@
         <!--Edit Contact View Controller - Edit-->
         <scene sceneID="Qxe-tW-1kD">
             <objects>
-                <tableViewController id="h5n-Xq-3Qb" customClass="EditContactViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditContact" id="h5n-Xq-3Qb" customClass="EditContactViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SYd-mc-N6n">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,8 +308,9 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1qk-78-jX5">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1qk-78-jX5">
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="K1t-4u-vVO"/>
                                                         <constraint firstAttribute="width" constant="42" id="t4A-mh-FXl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -310,7 +319,7 @@
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="cBj-5b-ZHd"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="456" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roI-YL-Byq">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roI-YL-Byq">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="Dur-gM-G20"/>
                                                     </constraints>
@@ -320,7 +329,7 @@
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="HjU-rc-Rkf"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="7890" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAS-jX-9KG">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAS-jX-9KG">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="BTz-lM-Qri"/>
                                                     </constraints>
@@ -358,17 +367,22 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="468-iR-Kqu" firstAttribute="top" secondItem="EZK-Ax-lHO" secondAttribute="top" constant="11" id="0m2-bR-s96"/>
                                             <constraint firstAttribute="trailing" secondItem="6bi-2P-OMf" secondAttribute="trailing" constant="70" id="82Y-by-KE1"/>
                                             <constraint firstItem="468-iR-Kqu" firstAttribute="leading" secondItem="EZK-Ax-lHO" secondAttribute="leading" constant="20" type="default" id="9gF-N0-0ys"/>
                                             <constraint firstItem="bAS-jX-9KG" firstAttribute="baseline" secondItem="roI-YL-Byq" secondAttribute="baseline" type="default" id="BL0-ja-4Lq"/>
                                             <constraint firstItem="jmI-Xq-Rt2" firstAttribute="leading" secondItem="468-iR-Kqu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="EkZ-1J-Ik0"/>
                                             <constraint firstAttribute="trailing" secondItem="roI-YL-Byq" secondAttribute="trailing" constant="84" id="Hr8-lW-odU"/>
-                                            <constraint firstItem="1qk-78-jX5" firstAttribute="centerY" secondItem="EZK-Ax-lHO" secondAttribute="centerY" type="default" id="Jek-Qb-gF7"/>
+                                            <constraint firstItem="bAS-jX-9KG" firstAttribute="top" secondItem="roI-YL-Byq" secondAttribute="top" type="default" id="Kft-gl-FNc"/>
+                                            <constraint firstItem="1qk-78-jX5" firstAttribute="top" secondItem="roI-YL-Byq" secondAttribute="top" type="default" id="Rnx-CP-Dgd"/>
+                                            <constraint firstItem="bAS-jX-9KG" firstAttribute="bottom" secondItem="roI-YL-Byq" secondAttribute="bottom" type="default" id="WEd-P3-U0N"/>
                                             <constraint firstItem="1qk-78-jX5" firstAttribute="leading" secondItem="EZK-Ax-lHO" secondAttribute="leading" constant="134" id="WNH-y5-YW1"/>
                                             <constraint firstItem="1qk-78-jX5" firstAttribute="baseline" secondItem="roI-YL-Byq" secondAttribute="baseline" type="default" id="X2G-D5-wLY"/>
                                             <constraint firstItem="6bi-2P-OMf" firstAttribute="baseline" secondItem="Sb3-us-Rfi" secondAttribute="baseline" type="default" id="YEC-m0-fIe"/>
+                                            <constraint firstItem="roI-YL-Byq" firstAttribute="bottom" secondItem="1qk-78-jX5" secondAttribute="bottom" type="default" id="cbn-82-NQ6"/>
                                             <constraint firstAttribute="trailing" secondItem="bAS-jX-9KG" secondAttribute="trailing" constant="20" type="default" id="izF-fu-rpd"/>
                                             <constraint firstItem="Sb3-us-Rfi" firstAttribute="top" secondItem="EZK-Ax-lHO" secondAttribute="top" constant="10" id="qYp-QG-fjy"/>
+                                            <constraint firstItem="bAS-jX-9KG" firstAttribute="centerY" secondItem="EZK-Ax-lHO" secondAttribute="centerY" type="default" id="r9D-ae-y6W"/>
                                             <constraint firstItem="Sb3-us-Rfi" firstAttribute="baseline" secondItem="jmI-Xq-Rt2" secondAttribute="baseline" type="default" id="sJj-US-TqS"/>
                                             <constraint firstItem="468-iR-Kqu" firstAttribute="baseline" secondItem="1qk-78-jX5" secondAttribute="baseline" type="default" id="x02-ql-Lf3"/>
                                             <constraint firstAttribute="trailing" secondItem="Sb3-us-Rfi" secondAttribute="trailing" constant="130" id="y3S-rs-zPX"/>
@@ -539,6 +553,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="cuH-D4-9Xb" id="lGC-qh-ewM"/>
                         <outlet property="dashLabel" destination="6bi-2P-OMf" id="Z0y-1a-gtM"/>
                         <outlet property="deleteButton" destination="sny-LB-fjN" id="Zu4-oc-Vtf"/>
                         <outlet property="emailLabel" destination="Fjf-lZ-eb8" id="YgK-gF-eqI"/>
@@ -568,7 +583,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hO8-xX-bNS">
             <objects>
-                <navigationController definesPresentationContext="YES" id="FhI-fD-Fc4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EditContactNavigationController" definesPresentationContext="YES" id="FhI-fD-Fc4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hs8-m7-u6W">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -578,7 +593,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5HX-LC-199" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="-327"/>
+            <point key="canvasLocation" x="1684" y="-215"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qIx-nh-wkl">
@@ -598,61 +613,14 @@
     </scenes>
     <resources>
         <image name="firefly@2x.jpg" width="640" height="480"/>
+        <image name="shadow-radius6.png" width="1" height="16"/>
     </resources>
-    <classes>
-        <class className="ContactViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="emailAddressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="emailTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photoImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="twitterIdLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="twitterTitleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ContactsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
-        </class>
-        <class className="EditContactViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditContactViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="changePhoto:"/>
-                <relationship kind="action" name="deleteContact:"/>
-                <relationship kind="action" name="save:"/>
-                <relationship kind="outlet" name="dashLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="leftParenLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneAreaCodeTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phoneLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneLineNumberTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phonePrefixTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="photoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rightParenLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="twitterLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="twitterTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="V4A-jn-Ntb"/>
+    </inferredMetricsTieBreakers>
 </document>

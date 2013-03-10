@@ -27,13 +27,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.firstNameTextField.text = self.contact.firstName;
     self.lastNameTextField.text = self.contact.lastName;
     self.titleTextField.text = self.contact.title;
-    self.phoneAreaCodeTextField.text = [self.contact.phoneAreaCode stringValue];
-    self.phonePrefixTextField.text = [self.contact.phonePrefix stringValue];
-    self.phoneLineNumberTextField.text = [self.contact.phoneLineNumber stringValue];
+    if (self.contact.phoneAreaCode) {
+        self.phoneAreaCodeTextField.text = self.contact.phoneAreaCode;
+    }
+    if (self.contact.phonePrefix) {
+        self.phonePrefixTextField.text = self.contact.phonePrefix;
+    }
+    if (self.contact.phoneLineNumber) {
+        self.phoneLineNumberTextField.text = self.contact.phoneLineNumber;
+    }
     self.emailTextField.text = self.contact.email;
     self.twitterTextField.text = self.contact.twitterId;
     if (self.contact.photo) {
@@ -53,6 +59,8 @@
     self.deleteButton.backgroundColor = [Theme deleteColor];
     [self.deleteButton setTitleColor:[Theme deleteTextColor] forState:UIControlStateNormal];
     self.deleteButton.layer.cornerRadius = 5;
+    self.deleteButton.layer.borderColor = [Theme deleteBorderColor].CGColor;
+    self.deleteButton.layer.borderWidth = 2;
     self.photoButton.layer.cornerRadius = 5;
     self.photoButton.clipsToBounds = YES;
     
@@ -147,6 +155,9 @@
 
 - (IBAction)deleteContact:(id)sender {
     NSLog(@"Delete contact");
+    [self.context deleteObject:self.contact];
+    [self.context save:NULL];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -236,13 +247,13 @@
     self.contact.firstName = self.firstNameTextField.text;
     self.contact.lastName = self.lastNameTextField.text;
     self.contact.title = self.titleTextField.text;
-    self.contact.phoneAreaCode = @([self.phoneAreaCodeTextField.text integerValue]);
-    self.contact.phonePrefix = @([self.phonePrefixTextField.text integerValue]);
-    self.contact.phoneLineNumber = @([self.phoneLineNumberTextField.text integerValue]);
+    self.contact.phoneAreaCode = self.phoneAreaCodeTextField.text;
+    self.contact.phonePrefix = self.phonePrefixTextField.text;
+    self.contact.phoneLineNumber = self.phoneLineNumberTextField.text;
     self.contact.email = self.emailTextField.text;
     self.contact.twitterId = self.twitterTextField.text;
     self.contact.photo = UIImageJPEGRepresentation([self.photoButton imageForState:UIControlStateNormal], 1);
-    [self.contact.managedObjectContext save:NULL];
+    [self.context save:NULL];
 }
 
 - (UIImage*)scaleAndCropImage:(UIImage*)image toSize:(CGSize)size
@@ -276,6 +287,11 @@
     textField.backgroundColor = [Theme bodyControlColor];
     textField.layer.cornerRadius = 5;
     textField.textColor = [Theme bodyControlTextColor];
+}
+
+- (void)hideCancelButton
+{
+    [self.navigationItem setLeftBarButtonItem:nil];
 }
 
 @end
