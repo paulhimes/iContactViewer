@@ -20,6 +20,12 @@
     // Override point for customization after application launch.
     ContactsViewController *controller = (ContactsViewController*)((UINavigationController *)self.window.rootViewController).topViewController;
     controller.context = self.managedObjectContext;
+    
+    // Apply app-wide theme.
+    [[UINavigationBar appearance] setTintColor:[Theme headerColor]];
+    [[UITableView appearance] setBackgroundColor:[Theme bodyColor]];
+    [[UITableView appearance] setSeparatorColor:[Theme bodyControlColor]];
+    
     return YES;
 }
 

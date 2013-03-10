@@ -20,4 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *twitterIdLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *phoneTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *twitterTitleLabel;
 @end

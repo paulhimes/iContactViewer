@@ -28,7 +28,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    self.view.backgroundColor = [Theme bodyColor];
+    self.nameLabel.textColor = [Theme bodyTextHeaderColor];
+    self.titleLabel.textColor = [Theme bodyTextColor];
+    self.phoneNumberLabel.textColor = [Theme bodyTextColor];
+    self.emailAddressLabel.textColor = [Theme bodyTextColor];
+    self.twitterIdLabel.textColor = [Theme bodyTextColor];
+    
+    self.phoneTitleLabel.textColor = [Theme bodyTextHeaderColor];
+    self.emailTitleLabel.textColor = [Theme bodyTextHeaderColor];
+    self.twitterTitleLabel.textColor = [Theme bodyTextHeaderColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,6 +70,9 @@
     self.phoneNumberLabel.text = [self.contact fullPhone];
     self.emailAddressLabel.text = self.contact.email;
     self.twitterIdLabel.text = self.contact.twitterId;
+    if (self.contact.photo) {
+        self.photoImageView.image = [UIImage imageWithData:self.contact.photo];
+    }
 }
 
 @end

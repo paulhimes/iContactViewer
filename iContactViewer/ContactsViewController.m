@@ -38,6 +38,8 @@
     
     self.fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     [self.fetchController performFetch:NULL];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,6 +87,12 @@
     
     cell.textLabel.text = [contact fullName];
     cell.detailTextLabel.text = contact.title;
+    cell.textLabel.textColor = [Theme bodyTextHeaderColor];
+    cell.detailTextLabel.textColor = [Theme bodyTextColor];
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[Theme bodyTextColor]];
+    [cell setSelectedBackgroundView:bgColorView];
     
     return cell;
 }
@@ -112,6 +120,8 @@
     }
     [self.context save:NULL];
     
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"firefly.jpg"], 1);
+    
     Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Malcom";
     contact.lastName = @"Reynolds";
@@ -121,6 +131,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(1234);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -132,6 +143,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(5678);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -143,6 +155,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(9012);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -154,6 +167,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(3456);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -165,6 +179,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(7890);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -176,6 +191,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(4321);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -187,6 +203,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(8765);
+    contact.photo = imageData;
     [self.context save:NULL];
     
     contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
@@ -198,6 +215,7 @@
     contact.phoneAreaCode = @(612);
     contact.phonePrefix = @(555);
     contact.phoneLineNumber = @(2109);
+    contact.photo = imageData;
     [self.context save:NULL];
 }
 

@@ -29,6 +29,10 @@
 		8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1616EAC39A00520F12 /* ContactViewController.m */; };
 		8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1916EAC3E500520F12 /* EditContactViewController.m */; };
 		8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1C16EAF9AB00520F12 /* Contact.m */; };
+		8BA0D44C16EC35EB00F03B51 /* firefly@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */; };
+		8BA0D44F16EC555400F03B51 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D44E16EC555400F03B51 /* Theme.m */; };
+		8BA0D45316EC5A0B00F03B51 /* paper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D45216EC5A0B00F03B51 /* paper.jpg */; };
+		8BA0D45516EC611300F03B51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA0D45416EC611300F03B51 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,11 @@
 		8B82ED1916EAC3E500520F12 /* EditContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactViewController.m; sourceTree = "<group>"; };
 		8B82ED1B16EAF9AB00520F12 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B82ED1C16EAF9AB00520F12 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "firefly@2x.jpg"; sourceTree = "<group>"; };
+		8BA0D44D16EC555400F03B51 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		8BA0D44E16EC555400F03B51 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
+		8BA0D45216EC5A0B00F03B51 /* paper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paper.jpg; sourceTree = "<group>"; };
+		8BA0D45416EC611300F03B51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA0D45516EC611300F03B51 /* QuartzCore.framework in Frameworks */,
 				8B82ECD616E9A80500520F12 /* UIKit.framework in Frameworks */,
 				8B82ECD816E9A80500520F12 /* Foundation.framework in Frameworks */,
 				8B82ECDA16E9A80500520F12 /* CoreGraphics.framework in Frameworks */,
@@ -126,6 +136,7 @@
 				8B82ECD716E9A80500520F12 /* Foundation.framework */,
 				8B82ECD916E9A80500520F12 /* CoreGraphics.framework */,
 				8B82ECDB16E9A80500520F12 /* CoreData.framework */,
+				8BA0D45416EC611300F03B51 /* QuartzCore.framework */,
 				8B82ECF816E9A80500520F12 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
@@ -142,6 +153,8 @@
 				8B82ED1616EAC39A00520F12 /* ContactViewController.m */,
 				8B82ED1816EAC3E500520F12 /* EditContactViewController.h */,
 				8B82ED1916EAC3E500520F12 /* EditContactViewController.m */,
+				8BA0D44D16EC555400F03B51 /* Theme.h */,
+				8BA0D44E16EC555400F03B51 /* Theme.m */,
 				8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */,
 				8B82ED1E16EAF9BC00520F12 /* Data Model */,
 				8B82ECDE16E9A80500520F12 /* Supporting Files */,
@@ -159,6 +172,8 @@
 				8B82ECE916E9A80500520F12 /* Default.png */,
 				8B82ECEB16E9A80500520F12 /* Default@2x.png */,
 				8B82ECED16E9A80500520F12 /* Default-568h@2x.png */,
+				8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */,
+				8BA0D45216EC5A0B00F03B51 /* paper.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,6 +283,8 @@
 				8B82ECEC16E9A80500520F12 /* Default@2x.png in Resources */,
 				8B82ECEE16E9A80500520F12 /* Default-568h@2x.png in Resources */,
 				8B82ED1116E9A85B00520F12 /* iContactViewer.storyboard in Resources */,
+				8BA0D44C16EC35EB00F03B51 /* firefly@2x.jpg in Resources */,
+				8BA0D45316EC5A0B00F03B51 /* paper.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +326,7 @@
 				8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */,
 				8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */,
 				8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */,
+				8BA0D44F16EC555400F03B51 /* Theme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
