@@ -207,6 +207,9 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [self presentViewController:imagePicker animated:YES completion:^{}];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Curse your sudden but inevitable betrayal!" message:@"Your device doesn't have a camera." delegate:nil cancelButtonTitle:@"Shiny" otherButtonTitles:nil];
+                [alertView show];
             }
             break;
         case 1:
@@ -287,6 +290,8 @@
     textField.backgroundColor = [Theme bodyControlColor];
     textField.layer.cornerRadius = 5;
     textField.textColor = [Theme bodyControlTextColor];
+    textField.layer.borderColor = [Theme bodyTextColor].CGColor;
+    textField.layer.borderWidth = 0.5;
 }
 
 - (void)hideCancelButton

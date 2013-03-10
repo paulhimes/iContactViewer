@@ -11,7 +11,7 @@
 #import "ContactViewController.h"
 #import "EditContactViewController.h"
 
-@interface ContactsViewController ()
+@interface ContactsViewController () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchController;
 
@@ -32,7 +32,13 @@
 {
     [super viewDidLoad];
 
-    [self resetHardcodedContacts];
+    // Set hardcoded contacts on the first launch.
+    NSString *hasSetKey = @"HasLoadedHardcodedContacts";
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:hasSetKey]) {
+        [self resetHardcodedContacts];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:hasSetKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:kContactEntityName];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]];
@@ -137,7 +143,24 @@
      */
 }
 
+#pragma mark - UIAlertViewDelegate
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            // Dismiss
+            break;
+        case 1:
+            // Reset
+            [self resetHardcodedContacts];
+            [self.fetchController performFetch:NULL];
+            [self.tableView reloadData];
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark - Helper Methods
 
@@ -147,9 +170,7 @@
     for (Contact *contact in allContacts) {
         [self.context deleteObject:contact];
     }
-    
-    
-        
+
     Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
     contact.firstName = @"Malcom";
     contact.lastName = @"Reynolds";
@@ -239,6 +260,13 @@
     contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"shepherd.jpg"], 1);
 
     [self.context save:NULL];
+}
+
+- (IBAction)showInfo:(id)sender {
+    NSString *message = @"iContactViewer was developed by Let It Be.\n\nSENG 5199-1  Spring 2013\n\n- Paul Himes\n- Eranda Kotalawala\n- Chad Linke\n- Michael Pillsbury";
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Credits" message:message delegate:self cancelButtonTitle:@"Shiny" otherButtonTitles:@"Reset Data", nil];
+    [alertView show];
 }
 
 @end

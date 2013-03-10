@@ -40,7 +40,24 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="iContactViewer" id="Y7w-UT-ttv">
-                        <barButtonItem key="backBarButtonItem" title="Contacts" id="OhI-7L-9q5"/>
+                        <barButtonItem key="backBarButtonItem" title="Contacts" id="FKX-Za-4fW"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="FZL-J9-gtx">
+                            <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="hik-LP-vqt">
+                                <rect key="frame" x="5" y="5" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="info.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showInfo:" destination="z08-Tx-b08" eventType="touchUpInside" id="WgF-GF-Rc1"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="d88-Lp-QYG">
                             <connections>
                                 <segue destination="FhI-fD-Fc4" kind="modal" identifier="Add" id="V4A-jn-Ntb"/>
@@ -119,16 +136,17 @@
                         <constraints>
                             <constraint firstItem="Wwr-De-QDP" firstAttribute="baseline" secondItem="y1W-va-Z4k" secondAttribute="baseline" type="default" id="2Th-Id-Pbr"/>
                             <constraint firstItem="tKc-XP-yoB" firstAttribute="baseline" secondItem="fXR-Cu-T9L" secondAttribute="baseline" type="default" id="3ev-op-rBl"/>
+                            <constraint firstAttribute="bottom" secondItem="y1W-va-Z4k" secondAttribute="bottom" constant="100" id="3qA-T8-RZg"/>
                             <constraint firstItem="fXR-Cu-T9L" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4Qt-Eo-V1H"/>
                             <constraint firstItem="Esk-PM-dk4" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4yT-xF-EPe"/>
                             <constraint firstAttribute="trailing" secondItem="zp2-60-r3J" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5C7-cm-EKP"/>
+                            <constraint firstAttribute="bottom" secondItem="Esk-PM-dk4" secondAttribute="bottom" constant="192" id="6DT-XE-e5C"/>
                             <constraint firstItem="43w-h1-tHe" firstAttribute="leading" secondItem="Wwr-De-QDP" secondAttribute="leading" type="default" id="6d0-qf-XR0"/>
                             <constraint firstItem="Xmq-hN-OLa" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7bd-XH-Ddp"/>
                             <constraint firstItem="Wwr-De-QDP" firstAttribute="leading" secondItem="y1W-va-Z4k" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="B6P-Ku-JPd"/>
                             <constraint firstItem="p61-xQ-cb0" firstAttribute="trailing" secondItem="wfe-7Z-td9" secondAttribute="trailing" type="default" id="BgR-pE-ILE"/>
                             <constraint firstAttribute="trailing" secondItem="43w-h1-tHe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dq0-2I-Vqb"/>
                             <constraint firstItem="sfA-fU-ecV" firstAttribute="top" secondItem="p61-xQ-cb0" secondAttribute="bottom" type="user" id="Fdl-0p-csz"/>
-                            <constraint firstItem="fXR-Cu-T9L" firstAttribute="top" secondItem="Esk-PM-dk4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MwM-qa-Hee"/>
                             <constraint firstItem="sfA-fU-ecV" firstAttribute="top" secondItem="wfe-7Z-td9" secondAttribute="top" constant="239" type="user" id="ON3-xi-bU9"/>
                             <constraint firstItem="43w-h1-tHe" firstAttribute="baseline" secondItem="Xmq-hN-OLa" secondAttribute="baseline" type="default" id="Qli-Up-3OL"/>
                             <constraint firstItem="y1W-va-Z4k" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UUU-Ey-3jA"/>
@@ -136,7 +154,6 @@
                             <constraint firstItem="Xmq-hN-OLa" firstAttribute="top" secondItem="fXR-Cu-T9L" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="caD-AX-w3x"/>
                             <constraint firstItem="tKc-XP-yoB" firstAttribute="leading" secondItem="43w-h1-tHe" secondAttribute="leading" type="default" id="csU-8V-Kbb"/>
                             <constraint firstItem="zp2-60-r3J" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dtg-Aa-GXc"/>
-                            <constraint firstAttribute="bottom" secondItem="y1W-va-Z4k" secondAttribute="bottom" constant="105" id="gjS-8l-Y91"/>
                             <constraint firstItem="sfA-fU-ecV" firstAttribute="trailing" secondItem="wfe-7Z-td9" secondAttribute="trailing" type="default" id="gnB-m9-sxK"/>
                             <constraint firstItem="p61-xQ-cb0" firstAttribute="leading" secondItem="wfe-7Z-td9" secondAttribute="leading" type="default" id="hZU-EA-x3o"/>
                             <constraint firstAttribute="trailing" secondItem="tKc-XP-yoB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="k2x-MM-NTu"/>
@@ -613,6 +630,7 @@
     </scenes>
     <resources>
         <image name="firefly@2x.jpg" width="640" height="480"/>
+        <image name="info.png" width="18" height="19"/>
         <image name="shadow-radius6.png" width="1" height="16"/>
     </resources>
     <classes>
@@ -632,6 +650,9 @@
         </class>
         <class className="ContactsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showInfo:"/>
+            </relationships>
         </class>
         <class className="EditContactViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditContactViewController.h"/>
@@ -673,6 +694,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="S8C-zb-OuI"/>
+        <segue reference="V4A-jn-Ntb"/>
     </inferredMetricsTieBreakers>
 </document>

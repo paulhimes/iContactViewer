@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
+- (IBAction)showInfo:(id)sender;
+
 @end
