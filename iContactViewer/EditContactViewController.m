@@ -155,8 +155,6 @@
 
 - (IBAction)deleteContact:(id)sender {
     NSLog(@"Delete contact");
-    [self.context deleteObject:self.contact];
-    [self.context save:NULL];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
@@ -256,7 +254,6 @@
     self.contact.email = self.emailTextField.text;
     self.contact.twitterId = self.twitterTextField.text;
     self.contact.photo = UIImageJPEGRepresentation([self.photoButton imageForState:UIControlStateNormal], 1);
-    [self.context save:NULL];
 }
 
 - (UIImage*)scaleAndCropImage:(UIImage*)image toSize:(CGSize)size

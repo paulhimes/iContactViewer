@@ -11,16 +11,6 @@
 
 @implementation Contact
 
-@dynamic email;
-@dynamic firstName;
-@dynamic lastName;
-@dynamic phoneAreaCode;
-@dynamic phoneLineNumber;
-@dynamic phonePrefix;
-@dynamic photo;
-@dynamic title;
-@dynamic twitterId;
-
 - (NSString*)fullName
 {
     NSString *fullName = @"No Name";
@@ -59,6 +49,11 @@
     }
     
     return fullPhone;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Contact[id=%@, name=%@, title=%@, phone=%@, email=%@, twitterId=%@]", self.uniqueId, [self fullName], self.title, [self fullPhone], self.email, self.twitterId];
 }
 
 @end

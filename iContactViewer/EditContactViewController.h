@@ -11,7 +11,6 @@
 
 @interface EditContactViewController : UITableViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) Contact *contact;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;

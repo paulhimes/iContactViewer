@@ -11,7 +11,6 @@
 
 @interface ContactViewController : UIViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) Contact *contact;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

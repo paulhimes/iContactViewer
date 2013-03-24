@@ -17,7 +17,6 @@
 		8B82ECEA16E9A80500520F12 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ECE916E9A80500520F12 /* Default.png */; };
 		8B82ECEC16E9A80500520F12 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ECEB16E9A80500520F12 /* Default@2x.png */; };
 		8B82ECEE16E9A80500520F12 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B82ECED16E9A80500520F12 /* Default-568h@2x.png */; };
-		8B82ECF116E9A80500520F12 /* iContactViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */; };
 		8B82ECF916E9A80500520F12 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECF816E9A80500520F12 /* SenTestingKit.framework */; };
 		8B82ECFA16E9A80500520F12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD516E9A80500520F12 /* UIKit.framework */; };
 		8B82ECFB16E9A80500520F12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD716E9A80500520F12 /* Foundation.framework */; };
@@ -29,6 +28,7 @@
 		8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1616EAC39A00520F12 /* ContactViewController.m */; };
 		8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1916EAC3E500520F12 /* EditContactViewController.m */; };
 		8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82ED1C16EAF9AB00520F12 /* Contact.m */; };
+		8B99900716FE38AA003EBFE8 /* DataServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B99900616FE38A9003EBFE8 /* DataServicesManager.m */; };
 		8BA0D44C16EC35EB00F03B51 /* firefly@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */; };
 		8BA0D44F16EC555400F03B51 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D44E16EC555400F03B51 /* Theme.m */; };
 		8BA0D45516EC611300F03B51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA0D45416EC611300F03B51 /* QuartzCore.framework */; };
@@ -73,7 +73,6 @@
 		8B82ECE916E9A80500520F12 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8B82ECEB16E9A80500520F12 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8B82ECED16E9A80500520F12 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8B82ECF016E9A80500520F12 /* iContactViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iContactViewer.xcdatamodel; sourceTree = "<group>"; };
 		8B82ECF716E9A80500520F12 /* iContactViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iContactViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B82ECF816E9A80500520F12 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8B82ED0116E9A80500520F12 /* iContactViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iContactViewerTests-Info.plist"; sourceTree = "<group>"; };
@@ -89,6 +88,8 @@
 		8B82ED1916EAC3E500520F12 /* EditContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactViewController.m; sourceTree = "<group>"; };
 		8B82ED1B16EAF9AB00520F12 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B82ED1C16EAF9AB00520F12 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		8B99900516FE38A9003EBFE8 /* DataServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServicesManager.h; sourceTree = "<group>"; };
+		8B99900616FE38A9003EBFE8 /* DataServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataServicesManager.m; sourceTree = "<group>"; };
 		8BA0D44B16EC35EB00F03B51 /* firefly@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "firefly@2x.jpg"; sourceTree = "<group>"; };
 		8BA0D44D16EC555400F03B51 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		8BA0D44E16EC555400F03B51 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
@@ -231,9 +232,10 @@
 		8B82ED1E16EAF9BC00520F12 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B99900516FE38A9003EBFE8 /* DataServicesManager.h */,
+				8B99900616FE38A9003EBFE8 /* DataServicesManager.m */,
 				8B82ED1B16EAF9AB00520F12 /* Contact.h */,
 				8B82ED1C16EAF9AB00520F12 /* Contact.m */,
-				8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -381,12 +383,12 @@
 			files = (
 				8B82ECE416E9A80500520F12 /* main.m in Sources */,
 				8B82ECE816E9A80500520F12 /* AppDelegate.m in Sources */,
-				8B82ECF116E9A80500520F12 /* iContactViewer.xcdatamodeld in Sources */,
 				8B82ED1416E9A8C800520F12 /* ContactsViewController.m in Sources */,
 				8B82ED1716EAC39A00520F12 /* ContactViewController.m in Sources */,
 				8B82ED1A16EAC3E500520F12 /* EditContactViewController.m in Sources */,
 				8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */,
 				8BA0D44F16EC555400F03B51 /* Theme.m in Sources */,
+				8B99900716FE38AA003EBFE8 /* DataServicesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,19 +573,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8B82ECEF16E9A80500520F12 /* iContactViewer.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8B82ECF016E9A80500520F12 /* iContactViewer.xcdatamodel */,
-			);
-			currentVersion = 8B82ECF016E9A80500520F12 /* iContactViewer.xcdatamodel */;
-			path = iContactViewer.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8B82ECCA16E9A80500520F12 /* Project object */;
 }

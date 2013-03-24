@@ -10,10 +10,11 @@
 #import "Contact.h"
 #import "ContactViewController.h"
 #import "EditContactViewController.h"
+#import "DataServicesManager.h"
 
 @interface ContactsViewController () <UIAlertViewDelegate>
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchController;
+@property (nonatomic, strong) NSArray *contacts;
 
 @end
 
@@ -30,27 +31,20 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    // Set hardcoded contacts on the first launch.
-    NSString *hasSetKey = @"HasLoadedHardcodedContacts";
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:hasSetKey]) {
-        [self resetHardcodedContacts];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:hasSetKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:kContactEntityName];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]];
-    
-    self.fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];    
+    [super viewDidLoad]; 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.fetchController performFetch:NULL];
-    [self.tableView reloadData];
+    
+    [[[DataServicesManager alloc] init] fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+        self.contacts = contacts;
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,17 +57,14 @@
 {
     if ([segue.identifier isEqualToString:@"Detail"]) {
         ContactViewController *contactViewController = segue.destinationViewController;
-        contactViewController.contact = [self.fetchController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
-        contactViewController.context = self.context;
+        contactViewController.contact = self.contacts[[self.tableView indexPathForSelectedRow].row];
     } else if ([segue.identifier isEqualToString:@"Add"]) {
         
         // Create a new contact.
-        Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-        [self.context save:NULL];
+        Contact *contact = [[Contact alloc] init];
         
         EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
         editContactViewController.contact = contact;
-        editContactViewController.context = self.context;
         [editContactViewController hideCancelButton];
     }
 }
@@ -83,14 +74,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.fetchController.sections count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchController.sections[section];
-    return sectionInfo.numberOfObjects;
+    return [self.contacts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,8 +88,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchController.sections[indexPath.section];
-    Contact *contact = (Contact*)sectionInfo.objects[indexPath.row];
+    Contact *contact = self.contacts[indexPath.row];
     
     cell.textLabel.text = [contact fullName];
     cell.detailTextLabel.text = contact.title;
@@ -122,11 +111,7 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Contact *contact = [self.fetchController objectAtIndexPath:indexPath];
-        [self.context deleteObject:contact];
-        [self.context save:NULL];
-        [self.fetchController performFetch:NULL];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
@@ -154,7 +139,6 @@
         case 1:
             // Reset
             [self resetHardcodedContacts];
-            [self.fetchController performFetch:NULL];
             [self.tableView reloadData];
             break;
         default:
@@ -166,100 +150,100 @@
 
 - (void)resetHardcodedContacts
 {
-    NSArray *allContacts = [self.context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:kContactEntityName] error:NULL];
-    for (Contact *contact in allContacts) {
-        [self.context deleteObject:contact];
-    }
-
-    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Malcom";
-    contact.lastName = @"Reynolds";
-    contact.email = @"mal@serenity.com";
-    contact.title = @"Captain";
-    contact.twitterId = @"malcomreynolds";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"1234";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"mal.jpg"], 1);
-    
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Zoe";
-    contact.lastName = @"Washburne";
-    contact.email = @"zoe@serenity.com";
-    contact.title = @"First Mate";
-    contact.twitterId = @"zoewashburne";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"5678";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"zoe.jpg"], 1);
-    
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Hoban";
-    contact.lastName = @"Washburne";
-    contact.email = @"wash@serenity.com";
-    contact.title = @"Pilot";
-    contact.twitterId = @"wash";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"9012";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"wash.jpg"], 1);
-    
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Jayne";
-    contact.lastName = @"Cobb";
-    contact.email = @"jayne@serenity.com";
-    contact.title = @"Muscle";
-    contact.twitterId = @"heroofcanton";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"3456";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"jayne.jpg"], 1);
-
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Kaylee";
-    contact.lastName = @"Frye";
-    contact.email = @"kaylee@serenity.com";
-    contact.title = @"Engineer";
-    contact.twitterId = @"kaylee";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"7890";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"kaylee.jpg"], 1);
-
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Simon";
-    contact.lastName = @"Tam";
-    contact.email = @"simon@serenity.com";
-    contact.title = @"Doctor";
-    contact.twitterId = @"simontam";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"4321";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"simon.jpg"], 1);
-
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"River";
-    contact.lastName = @"Tam";
-    contact.email = @"river@serenity.com";
-    contact.title = @"Doctor's Sister";
-    contact.twitterId = @"miranda";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"8765";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"river.jpg"], 1);
-
-    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-    contact.firstName = @"Shepherd";
-    contact.lastName = @"Book";
-    contact.email = @"shepherd@serenity.com";
-    contact.title = @"Shepherd";
-    contact.twitterId = @"shepherdbook";
-    contact.phoneAreaCode = @"612";
-    contact.phonePrefix = @"555";
-    contact.phoneLineNumber = @"2109";
-    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"shepherd.jpg"], 1);
-
-    [self.context save:NULL];
+//    NSArray *allContacts = [self.context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:kContactEntityName] error:NULL];
+//    for (Contact *contact in allContacts) {
+//        [self.context deleteObject:contact];
+//    }
+//
+//    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Malcom";
+//    contact.lastName = @"Reynolds";
+//    contact.email = @"mal@serenity.com";
+//    contact.title = @"Captain";
+//    contact.twitterId = @"malcomreynolds";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"1234";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"mal.jpg"], 1);
+//    
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Zoe";
+//    contact.lastName = @"Washburne";
+//    contact.email = @"zoe@serenity.com";
+//    contact.title = @"First Mate";
+//    contact.twitterId = @"zoewashburne";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"5678";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"zoe.jpg"], 1);
+//    
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Hoban";
+//    contact.lastName = @"Washburne";
+//    contact.email = @"wash@serenity.com";
+//    contact.title = @"Pilot";
+//    contact.twitterId = @"wash";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"9012";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"wash.jpg"], 1);
+//    
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Jayne";
+//    contact.lastName = @"Cobb";
+//    contact.email = @"jayne@serenity.com";
+//    contact.title = @"Muscle";
+//    contact.twitterId = @"heroofcanton";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"3456";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"jayne.jpg"], 1);
+//
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Kaylee";
+//    contact.lastName = @"Frye";
+//    contact.email = @"kaylee@serenity.com";
+//    contact.title = @"Engineer";
+//    contact.twitterId = @"kaylee";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"7890";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"kaylee.jpg"], 1);
+//
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Simon";
+//    contact.lastName = @"Tam";
+//    contact.email = @"simon@serenity.com";
+//    contact.title = @"Doctor";
+//    contact.twitterId = @"simontam";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"4321";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"simon.jpg"], 1);
+//
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"River";
+//    contact.lastName = @"Tam";
+//    contact.email = @"river@serenity.com";
+//    contact.title = @"Doctor's Sister";
+//    contact.twitterId = @"miranda";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"8765";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"river.jpg"], 1);
+//
+//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
+//    contact.firstName = @"Shepherd";
+//    contact.lastName = @"Book";
+//    contact.email = @"shepherd@serenity.com";
+//    contact.title = @"Shepherd";
+//    contact.twitterId = @"shepherdbook";
+//    contact.phoneAreaCode = @"612";
+//    contact.phonePrefix = @"555";
+//    contact.phoneLineNumber = @"2109";
+//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"shepherd.jpg"], 1);
+//
+//    [self.context save:NULL];
 }
 
 - (IBAction)showInfo:(id)sender {

@@ -44,7 +44,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (self.contact.managedObjectContext) {
+    if (self.contact) {
         [self updateDataFields];
     } else {
         [self.navigationController popToRootViewControllerAnimated:NO];
@@ -71,7 +71,6 @@
     if ([segue.identifier isEqualToString:@"Edit"]) {
         EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
         editContactViewController.contact = self.contact;
-        editContactViewController.context = self.context;
     }
 }
 

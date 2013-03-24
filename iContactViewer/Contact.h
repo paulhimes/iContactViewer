@@ -7,21 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-static NSString* const kContactEntityName = @"Contact";
+@interface Contact : NSObject
 
-@interface Contact : NSManagedObject
-
-@property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * firstName;
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSString * phoneAreaCode;
-@property (nonatomic, retain) NSString * phoneLineNumber;
-@property (nonatomic, retain) NSString * phonePrefix;
-@property (nonatomic, retain) NSData * photo;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * twitterId;
+@property (nonatomic, strong) NSString * uniqueId;
+@property (nonatomic, strong) NSString * email;
+@property (nonatomic, strong) NSString * firstName;
+@property (nonatomic, strong) NSString * lastName;
+@property (nonatomic, strong) NSString * phoneAreaCode;
+@property (nonatomic, strong) NSString * phoneLineNumber;
+@property (nonatomic, strong) NSString * phonePrefix;
+@property (nonatomic, strong) NSData * photo;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSString * twitterId;
 
 - (NSString*)fullName;
 - (NSString*)fullPhone;
