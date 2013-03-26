@@ -75,9 +75,36 @@
     self.phoneNumberLabel.text = [self.contact fullPhone];
     self.emailAddressLabel.text = self.contact.email ;
     self.twitterIdLabel.text = self.contact.twitterId;
-    if (self.contact.photo) {
-        self.photoImageView.image = [UIImage imageWithData:self.contact.photo];
+    
+    // Set the contact photo to one of the hard-coded photos or a generic image based on the full name.
+    NSString *fullName = [self.contact fullName];
+    UIImage *image = [UIImage imageNamed:@"firefly.jpg"];
+    if ([fullName isEqualToString:@"Malcom Reynolds"]) {
+        image = [UIImage imageNamed:@"mal.jpg"];
     }
+    if ([fullName isEqualToString:@"Zoe Washburne"]) {
+        image = [UIImage imageNamed:@"zoe.jpg"];
+    }
+    if ([fullName isEqualToString:@"Hoban Washburne"]) {
+        image = [UIImage imageNamed:@"wash.jpg"];
+    }
+    if ([fullName isEqualToString:@"Jayne Cobb"]) {
+        image = [UIImage imageNamed:@"jayne.jpg"];
+    }
+    if ([fullName isEqualToString:@"Kaylee Frye"]) {
+        image = [UIImage imageNamed:@"kaylee.jpg"];
+    }
+    if ([fullName isEqualToString:@"Simon Tam"]) {
+        image = [UIImage imageNamed:@"simon.jpg"];
+    }
+    if ([fullName isEqualToString:@"River Tam"]) {
+        image = [UIImage imageNamed:@"river.jpg"];
+    }
+    if ([fullName isEqualToString:@"Shepherd Book"]) {
+        image = [UIImage imageNamed:@"shepherd.jpg"];
+    }
+    
+    self.photoImageView.image = image;
 }
 
 @end

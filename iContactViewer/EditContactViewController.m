@@ -10,7 +10,7 @@
 #import "EditContactViewController.h"
 #import "DataServicesManager.h"
 
-@interface EditContactViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface EditContactViewController () <UINavigationControllerDelegate>
 
 @end
 
@@ -43,11 +43,6 @@
     }
     self.emailTextField.text = self.contact.email;
     self.twitterTextField.text = self.contact.twitterId;
-    if (self.contact.photo) {
-        [self.photoButton setImage:[UIImage imageWithData:self.contact.photo] forState:UIControlStateNormal];
-    } else {
-        [self.photoButton setImage:[UIImage imageNamed:@"firefly.jpg"] forState:UIControlStateNormal];
-    }
     
     [self styleTextField:self.firstNameTextField];
     [self styleTextField:self.lastNameTextField];
@@ -62,8 +57,6 @@
     self.deleteButton.layer.cornerRadius = 5;
     self.deleteButton.layer.borderColor = [Theme deleteBorderColor].CGColor;
     self.deleteButton.layer.borderWidth = 2;
-    self.photoButton.layer.cornerRadius = 5;
-    self.photoButton.clipsToBounds = YES;
     
     self.firstNameLabel.textColor = [Theme bodyTextHeaderColor];
     self.lastNameLabel.textColor = [Theme bodyTextHeaderColor];
@@ -71,7 +64,6 @@
     self.phoneLabel.textColor = [Theme bodyTextHeaderColor];
     self.emailLabel.textColor = [Theme bodyTextHeaderColor];
     self.twitterLabel.textColor = [Theme bodyTextHeaderColor];
-    self.photoLabel.textColor = [Theme bodyTextHeaderColor];
     self.leftParenLabel.textColor = [Theme bodyTextHeaderColor];
     self.rightParenLabel.textColor = [Theme bodyTextHeaderColor];
     self.dashLabel.textColor = [Theme bodyTextHeaderColor];
@@ -84,11 +76,6 @@
 
 - (IBAction)save:(id)sender {
     [self updateContact];
-}
-
-- (IBAction)changePhoto:(id)sender {    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
-    [actionSheet showInView:self.view];
 }
 
 - (IBAction)deleteContact:(id)sender {
@@ -139,50 +126,6 @@
     return result;
 }
 
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.delegate = self;
-    
-    switch (buttonIndex) {
-        case 0:
-            // Camera
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentViewController:imagePicker animated:YES completion:^{}];
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Curse your sudden but inevitable betrayal!" message:@"Your device doesn't have a camera." delegate:nil cancelButtonTitle:@"Shiny" otherButtonTitles:nil];
-                [alertView show];
-            }
-            break;
-        case 1:
-            // Library
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentViewController:imagePicker animated:YES completion:^{}];
-            break;
-        case 2:
-            // Cancel
-            
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    if (image) {
-        [self.photoButton setImage:[self scaleAndCropImage:image toSize:CGSizeMake(320, 240)] forState:UIControlStateNormal];
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:^{}];
-}
-
 #pragma mark - Helper methods
 
 - (void)hide
@@ -200,7 +143,6 @@
     self.contact.phoneLineNumber = self.phoneLineNumberTextField.text;
     self.contact.email = self.emailTextField.text;
     self.contact.twitterId = self.twitterTextField.text;
-    self.contact.photo = UIImageJPEGRepresentation([self.photoButton imageForState:UIControlStateNormal], 1);
     
     if (self.contact.uniqueId) {
         // update

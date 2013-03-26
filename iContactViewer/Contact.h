@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSString * phoneAreaCode;
 @property (nonatomic, strong) NSString * phoneLineNumber;
 @property (nonatomic, strong) NSString * phonePrefix;
-@property (nonatomic, strong) NSData * photo;
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * twitterId;
 

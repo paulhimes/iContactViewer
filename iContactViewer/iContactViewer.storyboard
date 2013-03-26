@@ -479,50 +479,8 @@
                                             <constraint firstAttribute="trailing" secondItem="uY0-WF-H0N" secondAttribute="trailing" constant="20" type="default" id="z1X-CE-WqT"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="149" id="6Lw-a5-zOQ">
-                                        <rect key="frame" x="0.0" y="264" width="320" height="149"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEb-1j-5Ri">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="92" id="bbG-Oh-cHF"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZp-bQ-5rP">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="135" id="f8p-SA-Qdq"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="changePhoto:" destination="h5n-Xq-3Qb" eventType="touchUpInside" id="z3W-3u-GYk"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="mEb-1j-5Ri" firstAttribute="top" secondItem="6Lw-a5-zOQ" secondAttribute="top" constant="11" id="1pC-yy-rg8"/>
-                                            <constraint firstItem="GZp-bQ-5rP" firstAttribute="centerY" secondItem="6Lw-a5-zOQ" secondAttribute="centerY" type="default" id="5YV-jo-vEH"/>
-                                            <constraint firstAttribute="trailing" secondItem="GZp-bQ-5rP" secondAttribute="trailing" constant="20" type="default" id="cgT-sv-trc"/>
-                                            <constraint firstItem="mEb-1j-5Ri" firstAttribute="leading" secondItem="6Lw-a5-zOQ" secondAttribute="leading" constant="20" type="default" id="r9D-Mg-WjR"/>
-                                            <constraint firstItem="GZp-bQ-5rP" firstAttribute="leading" secondItem="mEb-1j-5Ri" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ueK-yD-vXy"/>
-                                        </constraints>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="57" id="KIc-Sd-JV1">
-                                        <rect key="frame" x="0.0" y="413" width="320" height="57"/>
+                                        <rect key="frame" x="0.0" y="264" width="320" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -584,8 +542,6 @@
                         <outlet property="phoneLabel" destination="468-iR-Kqu" id="zJE-PN-J4t"/>
                         <outlet property="phoneLineNumberTextField" destination="bAS-jX-9KG" id="DFw-dn-vaF"/>
                         <outlet property="phonePrefixTextField" destination="roI-YL-Byq" id="ENN-BX-Ccp"/>
-                        <outlet property="photoButton" destination="GZp-bQ-5rP" id="Tov-KB-OmF"/>
-                        <outlet property="photoLabel" destination="mEb-1j-5Ri" id="BPy-eY-1ch"/>
                         <outlet property="rightParenLabel" destination="Sb3-us-Rfi" id="KWk-WJ-heu"/>
                         <outlet property="titleLabel" destination="76Z-1C-iuf" id="oC8-SR-DZZ"/>
                         <outlet property="titleTextField" destination="tMO-Yl-odP" id="84N-6r-mbI"/>

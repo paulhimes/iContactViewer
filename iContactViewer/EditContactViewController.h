@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneLineNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *twitterTextField;
-@property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
@@ -28,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *twitterLabel;
-@property (weak, nonatomic) IBOutlet UILabel *photoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftParenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rightParenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dashLabel;
@@ -36,7 +34,6 @@
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
-- (IBAction)changePhoto:(id)sender;
 - (IBAction)deleteContact:(id)sender;
 
 - (void)hideCancelButton;
