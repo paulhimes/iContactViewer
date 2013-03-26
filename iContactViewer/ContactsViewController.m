@@ -14,7 +14,7 @@
 
 @interface ContactsViewController () <UIAlertViewDelegate>
 
-@property (nonatomic, strong) NSArray *contacts;
+@property (nonatomic, strong) NSMutableArray *contacts;
 
 @end
 
@@ -38,10 +38,9 @@
 {
     [super viewWillAppear:animated];
     
-    [[[DataServicesManager alloc] init] fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
-        self.contacts = contacts;
-        
+    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
         dispatch_sync(dispatch_get_main_queue(), ^{
+            self.contacts = [contacts mutableCopy];
             [self.tableView reloadData];
         });
     }];
@@ -111,21 +110,18 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        Contact *contact = self.contacts[indexPath.row];
+        
+        [DataServicesManager deleteContact:contact
+                     withCompletionHandler:^(BOOL success) {
+                         if (success) {
+                             dispatch_sync(dispatch_get_main_queue(), ^{
+                                 [self.contacts removeObject:contact];
+                                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                             });
+                         }
+                     }];
     }
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -247,7 +243,7 @@
 }
 
 - (IBAction)showInfo:(id)sender {
-    NSString *message = @"iContactViewer was developed by Let It Be.\n\nSENG 5199-1  Spring 2013\n\n- Paul Himes\n- Eranda Kotalawala\n- Chad Linke\n- Michael Pillsbury";
+    NSString *message = @"iContactViewer w/REST was developed by Let It Be.\n\nSENG 5199-1  Spring 2013\n\n- Paul Himes\n- Eranda Kotalawala\n- Chad Linke\n- Michael Pillsbury";
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Credits" message:message delegate:self cancelButtonTitle:@"Shiny" otherButtonTitles:@"Reset Data", nil];
     [alertView show];

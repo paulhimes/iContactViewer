@@ -44,21 +44,12 @@
 {
     [super viewWillAppear:animated];
     
-    if (self.contact) {
+    if (self.contact.uniqueId) {
         [self updateDataFields];
     } else {
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
 }
-
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    if (!self.contact.managedObjectContext) {
-//        // This contact has been deleted.
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//    }
-//}
 
 - (void)didReceiveMemoryWarning
 {
