@@ -38,12 +38,7 @@
 {
     [super viewWillAppear:animated];
     
-    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.contacts = [contacts mutableCopy];
-            [self.tableView reloadData];
-        });
-    }];
+    [self refreshTable];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,7 +130,6 @@
         case 1:
             // Reset
             [self resetHardcodedContacts];
-            [self.tableView reloadData];
             break;
         default:
             break;
@@ -146,100 +140,144 @@
 
 - (void)resetHardcodedContacts
 {
-//    NSArray *allContacts = [self.context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:kContactEntityName] error:NULL];
-//    for (Contact *contact in allContacts) {
-//        [self.context deleteObject:contact];
-//    }
-//
-//    Contact *contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Malcom";
-//    contact.lastName = @"Reynolds";
-//    contact.email = @"mal@serenity.com";
-//    contact.title = @"Captain";
-//    contact.twitterId = @"malcomreynolds";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"1234";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"mal.jpg"], 1);
-//    
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Zoe";
-//    contact.lastName = @"Washburne";
-//    contact.email = @"zoe@serenity.com";
-//    contact.title = @"First Mate";
-//    contact.twitterId = @"zoewashburne";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"5678";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"zoe.jpg"], 1);
-//    
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Hoban";
-//    contact.lastName = @"Washburne";
-//    contact.email = @"wash@serenity.com";
-//    contact.title = @"Pilot";
-//    contact.twitterId = @"wash";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"9012";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"wash.jpg"], 1);
-//    
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Jayne";
-//    contact.lastName = @"Cobb";
-//    contact.email = @"jayne@serenity.com";
-//    contact.title = @"Muscle";
-//    contact.twitterId = @"heroofcanton";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"3456";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"jayne.jpg"], 1);
-//
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Kaylee";
-//    contact.lastName = @"Frye";
-//    contact.email = @"kaylee@serenity.com";
-//    contact.title = @"Engineer";
-//    contact.twitterId = @"kaylee";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"7890";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"kaylee.jpg"], 1);
-//
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Simon";
-//    contact.lastName = @"Tam";
-//    contact.email = @"simon@serenity.com";
-//    contact.title = @"Doctor";
-//    contact.twitterId = @"simontam";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"4321";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"simon.jpg"], 1);
-//
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"River";
-//    contact.lastName = @"Tam";
-//    contact.email = @"river@serenity.com";
-//    contact.title = @"Doctor's Sister";
-//    contact.twitterId = @"miranda";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"8765";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"river.jpg"], 1);
-//
-//    contact = [NSEntityDescription insertNewObjectForEntityForName:kContactEntityName inManagedObjectContext:self.context];
-//    contact.firstName = @"Shepherd";
-//    contact.lastName = @"Book";
-//    contact.email = @"shepherd@serenity.com";
-//    contact.title = @"Shepherd";
-//    contact.twitterId = @"shepherdbook";
-//    contact.phoneAreaCode = @"612";
-//    contact.phonePrefix = @"555";
-//    contact.phoneLineNumber = @"2109";
-//    contact.photo = UIImageJPEGRepresentation([UIImage imageNamed:@"shepherd.jpg"], 1);
-//
-//    [self.context save:NULL];
+    NSLog(@"About to reset contacts");
+    // Fetch all existing contacts.
+    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+        __block NSInteger outstandingContacts = [contacts count];
+        dispatch_queue_t syncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
+        
+        // Delete each contact.
+        for (Contact* contact in contacts) {
+            [DataServicesManager deleteContact:contact withCompletionHandler:^(BOOL success) {
+                // Sequentialize access to the outstandingContacts counter.
+                dispatch_sync(syncQueue, ^{
+                    // Decrement the outstandingContacts counter.
+                    outstandingContacts--;
+                    NSLog(@"outstanding set to %d", outstandingContacts);
+                });
+            }];
+        }
+        
+        while (outstandingContacts > 0) {
+            // Waiting for one or more outstanding deletes to complete.
+        }
+        
+        // All preexisting contacts have been deleted (or at least attempted to).
+        NSLog(@"done!");
+        NSMutableArray *newContacts = [NSMutableArray array];
+        
+        Contact *contact = [[Contact alloc] init];
+        contact.firstName = @"Malcom";
+        contact.lastName = @"Reynolds";
+        contact.email = @"mal@serenity.com";
+        contact.title = @"Captain";
+        contact.twitterId = @"malcomreynolds";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"1234";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Zoe";
+        contact.lastName = @"Washburne";
+        contact.email = @"zoe@serenity.com";
+        contact.title = @"First Mate";
+        contact.twitterId = @"zoewashburne";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"5678";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Hoban";
+        contact.lastName = @"Washburne";
+        contact.email = @"wash@serenity.com";
+        contact.title = @"Pilot";
+        contact.twitterId = @"wash";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"9012";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Jayne";
+        contact.lastName = @"Cobb";
+        contact.email = @"jayne@serenity.com";
+        contact.title = @"Muscle";
+        contact.twitterId = @"heroofcanton";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"3456";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Kaylee";
+        contact.lastName = @"Frye";
+        contact.email = @"kaylee@serenity.com";
+        contact.title = @"Engineer";
+        contact.twitterId = @"kaylee";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"7890";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Simon";
+        contact.lastName = @"Tam";
+        contact.email = @"simon@serenity.com";
+        contact.title = @"Doctor";
+        contact.twitterId = @"simontam";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"4321";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"River";
+        contact.lastName = @"Tam";
+        contact.email = @"river@serenity.com";
+        contact.title = @"Doctor's Sister";
+        contact.twitterId = @"miranda";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"8765";
+        [newContacts addObject:contact];
+        
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Shepherd";
+        contact.lastName = @"Book";
+        contact.email = @"shepherd@serenity.com";
+        contact.title = @"Shepherd";
+        contact.twitterId = @"shepherdbook";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"2109";
+        [newContacts addObject:contact];
+        
+        // Setup the outstanding count again.
+        outstandingContacts = [newContacts count];
+        
+        // Save each new contacts.
+        for (Contact *contact in newContacts) {
+            [DataServicesManager saveNewContact:contact withCompletionHandler:^(Contact *contact) {
+                // Sequentialize access to the outstandingContacts counter.
+                dispatch_sync(syncQueue, ^{
+                    // Decrement the outstandingContacts counter.
+                    outstandingContacts--;
+                    NSLog(@"outstanding set to %d", outstandingContacts);
+                });
+            }];
+        }
+        
+        while (outstandingContacts > 0) {
+            // Waiting for one or more outstanding saves to complete.
+        }
+        
+        // All new contacts have been saved (or at least attempted to).
+        NSLog(@"done!");
+        
+        [self refreshTable];
+    }];
 }
 
 - (IBAction)showInfo:(id)sender {
@@ -247,6 +285,16 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Credits" message:message delegate:self cancelButtonTitle:@"Shiny" otherButtonTitles:@"Reset Data", nil];
     [alertView show];
+}
+
+- (void)refreshTable
+{
+    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.contacts = [contacts mutableCopy];
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 @end
