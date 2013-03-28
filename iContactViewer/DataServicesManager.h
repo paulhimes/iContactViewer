@@ -14,6 +14,9 @@ typedef void (^ContactsHandler)(NSArray* contacts);
 @interface DataServicesManager : NSObject
 
 + (void)fetchAllContactsWithCompletionHandler:(ContactsHandler)handler;
++ (void)deleteAllContactsWithCompletionHandler:(void(^)(BOOL success))handler;
++ (void)saveContacts:(NSArray*)contacts withCompletionHandler:(ContactsHandler)handler;
+
 + (void)updateContact:(Contact*)contact withCompletionHandler:(void(^)(Contact *contact))handler;
 + (void)saveNewContact:(Contact*)contact withCompletionHandler:(void(^)(Contact *contact))handler;
 + (void)deleteContact:(Contact*)contact withCompletionHandler:(void(^)(BOOL success))handler;

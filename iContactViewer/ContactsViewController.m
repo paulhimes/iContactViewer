@@ -85,9 +85,11 @@
     Contact *contact = self.contacts[indexPath.row];
     
     cell.textLabel.text = [contact fullName];
-    cell.detailTextLabel.text = contact.title;
     cell.textLabel.textColor = [Theme bodyTextHeaderColor];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.text = contact.title;
     cell.detailTextLabel.textColor = [Theme bodyTextColor];
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     
     UIView *bgColorView = [[UIView alloc] init];
     [bgColorView setBackgroundColor:[Theme bodyTextColor]];
@@ -139,31 +141,10 @@
 #pragma mark - Helper Methods
 
 - (void)resetHardcodedContacts
-{
-    NSLog(@"About to reset contacts");
-    // Fetch all existing contacts.
-    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
-        __block NSInteger outstandingContacts = [contacts count];
-        dispatch_queue_t syncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
-        
-        // Delete each contact.
-        for (Contact* contact in contacts) {
-            [DataServicesManager deleteContact:contact withCompletionHandler:^(BOOL success) {
-                // Sequentialize access to the outstandingContacts counter.
-                dispatch_sync(syncQueue, ^{
-                    // Decrement the outstandingContacts counter.
-                    outstandingContacts--;
-                    NSLog(@"outstanding set to %d", outstandingContacts);
-                });
-            }];
-        }
-        
-        while (outstandingContacts > 0) {
-            // Waiting for one or more outstanding deletes to complete.
-        }
-        
+{    
+    // Delete all existing contacts.
+    [DataServicesManager deleteAllContactsWithCompletionHandler:^(BOOL success) {
         // All preexisting contacts have been deleted (or at least attempted to).
-        NSLog(@"done!");
         NSMutableArray *newContacts = [NSMutableArray array];
         
         Contact *contact = [[Contact alloc] init];
@@ -254,29 +235,22 @@
         contact.phoneLineNumber = @"2109";
         [newContacts addObject:contact];
         
-        // Setup the outstanding count again.
-        outstandingContacts = [newContacts count];
+        contact = [[Contact alloc] init];
+        contact.firstName = @"Inara";
+        contact.lastName = @"Serra";
+        contact.email = @"shuttle1@serenity.com";
+        contact.title = @"Companion";
+        contact.twitterId = @"ambassador";
+        contact.phoneAreaCode = @"612";
+        contact.phonePrefix = @"555";
+        contact.phoneLineNumber = @"6789";
+        [newContacts addObject:contact];
         
-        // Save each new contacts.
-        for (Contact *contact in newContacts) {
-            [DataServicesManager saveNewContact:contact withCompletionHandler:^(Contact *contact) {
-                // Sequentialize access to the outstandingContacts counter.
-                dispatch_sync(syncQueue, ^{
-                    // Decrement the outstandingContacts counter.
-                    outstandingContacts--;
-                    NSLog(@"outstanding set to %d", outstandingContacts);
-                });
-            }];
-        }
-        
-        while (outstandingContacts > 0) {
-            // Waiting for one or more outstanding saves to complete.
-        }
-        
-        // All new contacts have been saved (or at least attempted to).
-        NSLog(@"done!");
-        
-        [self refreshTable];
+        // Save all the new contacts.
+        [DataServicesManager saveContacts:newContacts withCompletionHandler:^(NSArray *contacts) {
+            // All new contacts have been saved (or at least attempted to).            
+            [self refreshTable];
+        }];
     }];
 }
 

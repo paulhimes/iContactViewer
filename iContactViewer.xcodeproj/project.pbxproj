@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1CC2CF1703D7FD0058AC27 /* inara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B1CC2CE1703D7FD0058AC27 /* inara.jpg */; };
 		8B82ECD616E9A80500520F12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD516E9A80500520F12 /* UIKit.framework */; };
 		8B82ECD816E9A80500520F12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD716E9A80500520F12 /* Foundation.framework */; };
 		8B82ECDA16E9A80500520F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD916E9A80500520F12 /* CoreGraphics.framework */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B1CC2CE1703D7FD0058AC27 /* inara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inara.jpg; sourceTree = "<group>"; };
 		8B82ECD216E9A80500520F12 /* iContactViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iContactViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B82ECD516E9A80500520F12 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8B82ECD716E9A80500520F12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -243,6 +245,7 @@
 		8BA0D46016ED1CF200F03B51 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				8B1CC2CE1703D7FD0058AC27 /* inara.jpg */,
 				8BA0D46116ED227300F03B51 /* jayne.jpg */,
 				8BA0D46216ED227300F03B51 /* kaylee.jpg */,
 				8BA0D46316ED227300F03B51 /* mal.jpg */,
@@ -347,6 +350,7 @@
 				8BA0D47616ED2A0E00F03B51 /* info.png in Resources */,
 				8BA0D47816ED385300F03B51 /* icon114.png in Resources */,
 				8BA0D47A16ED388600F03B51 /* icon57.png in Resources */,
+				8B1CC2CF1703D7FD0058AC27 /* inara.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

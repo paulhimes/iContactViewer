@@ -20,8 +20,6 @@
         // This code will run on a background thread.        
         NSMutableArray *contacts = [NSMutableArray array];
         
-        NSLog(@"About to fetch all contacts");
-        
         // Setup the request.
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://contacts.tinyapollo.com/contacts?key=letitbe"]];
         
@@ -59,6 +57,72 @@
     });
 }
 
++ (void)deleteAllContactsWithCompletionHandler:(void(^)(BOOL success))handler
+{
+    // Fetch all existing contacts.
+    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+        __block NSInteger outstandingContacts = [contacts count];
+        dispatch_queue_t syncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
+        
+        // Delete each contact.
+        for (Contact* contact in contacts) {
+            [DataServicesManager deleteContact:contact withCompletionHandler:^(BOOL success) {
+                // Sequentialize access to the outstandingContacts counter.
+                dispatch_sync(syncQueue, ^{
+                    // Decrement the outstandingContacts counter.
+                    outstandingContacts--;
+                });
+            }];
+        }
+        
+        while (outstandingContacts > 0) {
+            // Waiting for one or more outstanding deletes to complete.
+        }
+        
+        // Verify that there are no remaining contacts.
+        [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+            BOOL success = YES;
+            if ([contacts count] > 0) {
+                success = NO;
+            }
+        
+            handler(success);
+        }];
+    }];
+}
+
++ (void)saveContacts:(NSArray*)contacts withCompletionHandler:(ContactsHandler)handler
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // This code will run on a background thread.
+        
+        __block NSInteger outstandingContacts = [contacts count];
+        dispatch_queue_t syncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
+        NSMutableArray *savedContacts = [NSMutableArray array];
+        
+        // Save each new contacts.
+        for (Contact *contact in contacts) {
+            [DataServicesManager saveNewContact:contact withCompletionHandler:^(Contact *contact) {
+                // Sequentialize access to the outstandingContacts counter and the savedContacts array.
+                dispatch_sync(syncQueue, ^{
+                    // Decrement the outstandingContacts counter.
+                    outstandingContacts--;
+                    if (contact) {
+                        [savedContacts addObject:contact];
+                    }
+                });
+            }];
+        }
+        
+        while (outstandingContacts > 0) {
+            // Waiting for one or more outstanding saves to complete.
+        }
+        
+        // All contacts have been saved.
+        handler(savedContacts);
+    });
+}
+
 + (void)saveNewContact:(Contact*)contact withCompletionHandler:(void(^)(Contact *contact))handler
 {
     [DataServicesManager persistContact:contact usingPost:YES withCompletionHandler:handler];
@@ -74,8 +138,6 @@
     if (contact && [contact.uniqueId length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // This code will run on a background thread.
-            
-            NSLog(@"About to delete a contact");
             
             // Setup the request.
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://contacts.tinyapollo.com/contacts/%@?key=letitbe", contact.uniqueId]]];
@@ -102,9 +164,7 @@
     if (contact) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // This code will run on a background thread.
-            
-            NSLog(@"About to persist a contact");
-            
+
             // Setup the request.
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://contacts.tinyapollo.com/contacts%@?key=letitbe", usePost ? @"" : [NSString stringWithFormat:@"/%@", contact.uniqueId]]]];
             [request setHTTPMethod:usePost ? @"POST" : @"PUT"];

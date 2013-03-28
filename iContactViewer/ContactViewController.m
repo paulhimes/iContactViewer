@@ -103,6 +103,9 @@
     if ([fullName isEqualToString:@"Shepherd Book"]) {
         image = [UIImage imageNamed:@"shepherd.jpg"];
     }
+    if ([fullName isEqualToString:@"Inara Serra"]) {
+        image = [UIImage imageNamed:@"inara.jpg"];
+    }
     
     self.photoImageView.image = image;
 }
