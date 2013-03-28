@@ -11,10 +11,12 @@
 #import "ContactViewController.h"
 #import "EditContactViewController.h"
 #import "DataServicesManager.h"
+#import "AlertHelper.h"
 
 @interface ContactsViewController () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *contacts;
+@property (nonatomic, strong) UIAlertView *alertView;
 
 @end
 
@@ -141,7 +143,9 @@
 #pragma mark - Helper Methods
 
 - (void)resetHardcodedContacts
-{    
+{
+    self.alertView = [AlertHelper showAlertWithTitle:@"Resetting Data"];
+    
     // Delete all existing contacts.
     [DataServicesManager deleteAllContactsWithCompletionHandler:^(BOOL success) {
         // All preexisting contacts have been deleted (or at least attempted to).
@@ -263,12 +267,22 @@
 
 - (void)refreshTable
 {
-    [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self.contacts = [contacts mutableCopy];
-            [self.tableView reloadData];
+            
+            if (!self.alertView) {
+                self.alertView = [AlertHelper showAlertWithTitle:@"Loading Contacts"];
+            }
+            
+            [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    self.contacts = [contacts mutableCopy];
+                    [self.tableView reloadData];
+                    [AlertHelper hideAlertView:self.alertView];
+                });
+            }];
         });
-    }];
+    });
 }
 
 @end

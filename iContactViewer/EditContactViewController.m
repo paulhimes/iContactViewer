@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EditContactViewController.h"
 #import "DataServicesManager.h"
+#import "AlertHelper.h"
 
 @interface EditContactViewController () <UINavigationControllerDelegate>
 
@@ -79,6 +80,9 @@
 }
 
 - (IBAction)deleteContact:(id)sender {
+    
+    UIAlertView *alertView = [AlertHelper showAlertWithTitle:[NSString stringWithFormat:@"Deleting %@", [self.contact fullName]]];
+    
     [DataServicesManager deleteContact:self.contact
                  withCompletionHandler:^(BOOL success) {
                      
@@ -88,6 +92,7 @@
                      
                      dispatch_sync(dispatch_get_main_queue(), ^{
                          [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+                         [AlertHelper hideAlertView:alertView];
                      });
                  }];
 }
@@ -146,18 +151,24 @@
     
     if (self.contact.uniqueId) {
         // update
+        UIAlertView *alertView = [AlertHelper showAlertWithTitle:[NSString stringWithFormat:@"Updating %@", [self.contact fullName]]];
+
         [DataServicesManager updateContact:self.contact
                      withCompletionHandler:^(Contact *contact) {                         
                          dispatch_sync(dispatch_get_main_queue(), ^{
                              [self hide];
+                             [AlertHelper hideAlertView:alertView];
                          });
                      }];
     } else {
         // save new contact
+        UIAlertView *alertView = [AlertHelper showAlertWithTitle:[NSString stringWithFormat:@"Saving %@", [self.contact fullName]]];
+        
         [DataServicesManager saveNewContact:self.contact
                       withCompletionHandler:^(Contact *contact) {
                           dispatch_sync(dispatch_get_main_queue(), ^{
                               [self hide];
+                              [AlertHelper hideAlertView:alertView];
                           });
                       }];
     }

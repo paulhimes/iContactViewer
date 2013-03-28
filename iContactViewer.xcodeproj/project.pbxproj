@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B1CC2CF1703D7FD0058AC27 /* inara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B1CC2CE1703D7FD0058AC27 /* inara.jpg */; };
+		8B1CC2D21703EA060058AC27 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1CC2D11703EA060058AC27 /* AlertHelper.m */; };
 		8B82ECD616E9A80500520F12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD516E9A80500520F12 /* UIKit.framework */; };
 		8B82ECD816E9A80500520F12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD716E9A80500520F12 /* Foundation.framework */; };
 		8B82ECDA16E9A80500520F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B82ECD916E9A80500520F12 /* CoreGraphics.framework */; };
@@ -61,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		8B1CC2CE1703D7FD0058AC27 /* inara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inara.jpg; sourceTree = "<group>"; };
+		8B1CC2D01703EA060058AC27 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
+		8B1CC2D11703EA060058AC27 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		8B82ECD216E9A80500520F12 /* iContactViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iContactViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B82ECD516E9A80500520F12 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8B82ECD716E9A80500520F12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -184,6 +187,8 @@
 				8B82ED1916EAC3E500520F12 /* EditContactViewController.m */,
 				8BA0D44D16EC555400F03B51 /* Theme.h */,
 				8BA0D44E16EC555400F03B51 /* Theme.m */,
+				8B1CC2D01703EA060058AC27 /* AlertHelper.h */,
+				8B1CC2D11703EA060058AC27 /* AlertHelper.m */,
 				8B82ED1016E9A85B00520F12 /* iContactViewer.storyboard */,
 				8B82ED1E16EAF9BC00520F12 /* Data Model */,
 				8B82ECDE16E9A80500520F12 /* Supporting Files */,
@@ -393,6 +398,7 @@
 				8B82ED1D16EAF9AB00520F12 /* Contact.m in Sources */,
 				8BA0D44F16EC555400F03B51 /* Theme.m in Sources */,
 				8B99900716FE38AA003EBFE8 /* DataServicesManager.m in Sources */,
+				8B1CC2D21703EA060058AC27 /* AlertHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
