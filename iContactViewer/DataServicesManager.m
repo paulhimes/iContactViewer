@@ -154,6 +154,10 @@
             // Send the new or updated contact back to the caller.
             handler([responseDictionary[@"status"] isEqualToString:@"success"]);
         });
+    } else {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            handler(NO);
+        });
     }
 }
 

@@ -267,18 +267,20 @@
 
 - (void)refreshTable
 {
+    __block ContactsViewController *blockSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_sync(dispatch_get_main_queue(), ^{
             
-            if (!self.alertView) {
-                self.alertView = [AlertHelper showAlertWithTitle:@"Loading Contacts"];
+            if (!blockSelf.alertView && [blockSelf.contacts count] == 0) {
+                blockSelf.alertView = [AlertHelper showAlertWithTitle:@"Loading Contacts"];
             }
             
             [DataServicesManager fetchAllContactsWithCompletionHandler:^(NSArray *contacts) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    self.contacts = [contacts mutableCopy];
-                    [self.tableView reloadData];
-                    [AlertHelper hideAlertView:self.alertView];
+                    blockSelf.contacts = [contacts mutableCopy];
+                    [blockSelf.tableView reloadData];
+                    [AlertHelper hideAlertView:blockSelf.alertView];
+                    blockSelf.alertView = nil;
                 });
             }];
         });
