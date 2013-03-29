@@ -36,6 +36,8 @@
 - (IBAction)save:(id)sender;
 - (IBAction)deleteContact:(id)sender;
 
+- (IBAction)textFieldValueChanged:(UITextField *)sender;
+
 - (void)hideCancelButton;
 
 @end

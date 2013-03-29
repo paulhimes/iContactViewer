@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Qp-mw-5Ox">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Qp-mw-5Ox">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -221,7 +221,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="RRP-Yh-Jto"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="OCc-f0-YJ6"/>
                                                     </connections>
@@ -258,7 +258,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="8xL-jQ-KrH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="jEb-aC-zGA"/>
                                                     </connections>
@@ -295,7 +295,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="JXE-cN-GUI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="Kwc-j8-Fzs"/>
                                                     </connections>
@@ -341,8 +341,9 @@
                                                         <constraint firstAttribute="width" constant="42" id="t4A-mh-FXl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="textFieldValueChanged:" destination="h5n-Xq-3Qb" eventType="editingChanged" id="q8A-YB-FV7"/>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="cBj-5b-ZHd"/>
                                                     </connections>
                                                 </textField>
@@ -351,8 +352,9 @@
                                                         <constraint firstAttribute="width" constant="42" id="Dur-gM-G20"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="textFieldValueChanged:" destination="h5n-Xq-3Qb" eventType="editingChanged" id="6dd-Xx-q89"/>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="HjU-rc-Rkf"/>
                                                     </connections>
                                                 </textField>
@@ -361,8 +363,9 @@
                                                         <constraint firstAttribute="width" constant="50" id="BTz-lM-Qri"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="textFieldValueChanged:" destination="h5n-Xq-3Qb" eventType="editingChanged" id="JHj-iB-CMH"/>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="lf3-Hr-W2N"/>
                                                     </connections>
                                                 </textField>
@@ -427,7 +430,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="ygY-Kb-afW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="2iY-t0-J7u"/>
                                                     </connections>
@@ -464,7 +467,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="lXh-HH-iqd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="h5n-Xq-3Qb" id="q3U-yK-rdD"/>
                                                     </connections>
@@ -626,6 +629,7 @@
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="deleteContact:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="textFieldValueChanged:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="dashLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>

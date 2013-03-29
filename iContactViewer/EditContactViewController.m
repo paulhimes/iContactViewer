@@ -105,7 +105,17 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == self.firstNameTextField) {
+        [self.lastNameTextField becomeFirstResponder];
+    } else if (textField == self.lastNameTextField) {
+        [self.titleTextField becomeFirstResponder];
+    } else if (textField == self.titleTextField) {
+        [self.phoneAreaCodeTextField becomeFirstResponder];
+    } else if (textField == self.emailTextField) {
+        [self.twitterTextField becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
     return YES;
 }
 
@@ -209,9 +219,25 @@
     textField.layer.borderWidth = 0.5;
 }
 
+- (IBAction)textFieldValueChanged:(UITextField *)sender {
+    if (sender == self.phoneAreaCodeTextField) {
+        if ([sender.text length] == 3) {
+            [self.phonePrefixTextField becomeFirstResponder];
+        }
+    } else if (sender == self.phonePrefixTextField) {
+        if ([sender.text length] == 3) {
+            [self.phoneLineNumberTextField becomeFirstResponder];
+        }
+    } else if (sender == self.phoneLineNumberTextField) {
+        if ([sender.text length] == 4) {
+            [self.emailTextField becomeFirstResponder];
+        }
+    }
+  
+}
+
 - (void)hideCancelButton
 {
     [self.navigationItem setLeftBarButtonItem:nil];
 }
-
 @end
